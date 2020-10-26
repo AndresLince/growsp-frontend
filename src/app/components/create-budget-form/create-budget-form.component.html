@@ -1,0 +1,19 @@
+<form
+    class="form-horizontal form-material" 
+    id="loginform"     
+    autocomplete="off"
+    [formGroup]="budgetForm"
+    (ngSubmit)="sendData()"           
+>                        
+    <div class="form-group">
+        <label htmlFor="name">Nombre del presupuesto:</label>
+        <input 
+            type="text" 
+            class="form-control input-border" 
+            id="name"   
+            formControlName="name"         
+            [(ngModel)]="name"      
+        />                    
+    </div>                         
+    <button type="submit" class="btn btn-primary btn-block mt-2 button">Crear</button>
+</form>       

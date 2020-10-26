@@ -1,0 +1,50 @@
+<p *ngFor="let budget of budgets"></p>
+
+<div class="row">
+    <div class="col-md-2 mt-3" *ngFor="let budget of budgets">
+        <div class="card">
+            <div class="card-header cardHeader">    
+                <div class="row">
+                    <div class="col-md-9 col-sm-1"><strong>{{budget.name}}</strong></div>           
+                    <div class="col-md-3 col-sm-1" class="selector"> 
+                        <fa-icon [icon]="faEdit" (click)="openBudget(budget.id)"></fa-icon>
+                    </div>
+                </div>               
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>Total:</strong> {{budget.incomes-budget.expenses}}</p>
+                <table class="table table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Valor</th>           
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let budgetDetail of budget.budgetDetails">
+                            <td>{{budgetDetail.description}}</td>
+                            <td>{{budgetDetail.symbol}}{{budgetDetail.netValue}}</td>   
+                            <td class="selector"><fa-icon [icon]="faEdit" (click)="openBudgetDetail(budgetDetail.id)"></fa-icon></td>                         
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mt-3">
+        <div class="card">
+            <div class="card-header cardHeader">    
+                <strong>Crear presupuesto</strong>
+            </div>
+            <div class="card-body">
+               <app-create-budget-form
+                (refreshBudgets)="getBudgets()"
+               ></app-create-budget-form>        
+            </div>
+        </div>
+    </div>
+
+
+   
+</div>
+

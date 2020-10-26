@@ -1,0 +1,54 @@
+<form  
+    [formGroup]="budgetDetailForm"
+    (ngSubmit)="sendData()"  >                        
+    <div class="form-group">
+        <label htmlFor="name">Nombre del detalle:</label>
+        <input type="text" class="form-control input-border" id="name" aria-describedby="emailHelp"  formControlName="name"                     
+        />
+    </div>
+        <label htmlFor="value">Valor:</label>
+        <input 
+            type="text" 
+            class="form-control input-border" 
+            id="value" 
+            aria-describedby="emailHelp"  
+            formControlName="value"                   
+        />   
+        <div class="form-group">
+            <label>Cantidad</label>
+            <input 
+                type="number" 
+                class="form-control input-border" 
+                name="quantity"
+                placeholder="cantidad" 
+                formControlName="quantity"                    
+            />
+        </div>
+    
+    <div class="form-group">
+        <label>Tipo:</label>
+        <div class="form-check form-check-inline ml-2">
+            <input 
+                class="form-check-input" 
+                type="radio" 
+                name="type" 
+                value="1"
+                formControlName="type"  
+                [(ngModel)]="type"     
+            >
+            <label class="form-check-label" for="inlineRadio1">Ingreso</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input 
+                class="form-check-input" 
+                type="radio" 
+                name="type"                                 
+                value="0"    
+                formControlName="type"    
+                [(ngModel)]="type"        
+            >            
+            <label class="form-check-label" for="inlineRadio2">Gasto</label>
+        </div>
+    </div>     
+    <button type="submit" class="btn btn-primary btn-block button">Crear</button>
+</form>

@@ -1,0 +1,84 @@
+.cardHeader{    
+    background: #593196!important;
+    color:white!important    
+}
+
+.card{    
+    background: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10);
+    border-radius: 16px 16px 16px 16px;
+    overflow: hidden;         
+}
+.button{
+    border-radius: 8px 8px 8px 8px;   
+    background: #593196;
+    border-color: black;
+}
+
+.input-border{
+    border-radius: 8px 8px 8px 8px;   
+}
+.input-border-password{
+    border-radius: 8px 0px 0px 8px;   
+}
+
+.login-card{    
+    
+    top: 50%;    
+}
+.bg-primary {
+    background-color: #593196 !important;
+}
+
+.footer {
+    bottom: 0;
+    color: #593196;
+    left: 0px;
+    padding: 17px 15px;
+    position: absolute;
+    right: 0;
+    border-top: 1px solid rgba(120, 130, 140, 0.13);
+    background: #ffffff; 
+}
+.w80{
+    width: 80px;
+}
+.w100{
+    width: 100px;
+}
+.w200{
+    width: 200px;
+}
+.w150{
+    width: 150px;
+}
+
+.fondo-modal-imagen{
+    background-color: rgba(0, 0, 0,0.4);
+    position: fixed;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+.oculto{
+    display: none;
+}
+.selector,.cursor{
+    cursor: pointer;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color:#593196 !important;
+    border-color: #593196 !important;
+}
+.table-primary tbody + tbody, .table-primary td, .table-primary th, .table-primary thead th {
+    border-color: #dee2e6 !important;
+}
+
+.table-primary, .table-primary > td, .table-primary > th {
+    background-color: #7d4ec5 !important;
+}

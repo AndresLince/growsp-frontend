@@ -1,0 +1,30 @@
+<form 
+    class="form-inline"
+    [formGroup]="budgetForm"
+    (ngSubmit)="sendData()"    
+>            
+    <div class="form-group mb-2 col-6"><div class="form-group">
+        <label for="name" class="sr-only">Nombre: </label>
+        <input 
+            type="text" 
+            class="form-control col-sm-10 input-border"           
+            id="name" 
+            placeholder="Nombre"
+            formControlName="name" 
+            [(ngModel)]="budgetName"       
+        >
+    </div>
+        <label>Afecta Inventario:</label>
+            <div class="form-check form-check-inline ml-2">
+           
+            <input type="radio" class="form-check-input"  formControlName="AffectBudget" name="AffectBudget" [(ngModel)]="AffectBudget" value="1">  
+            <label class="form-check-label" htmlFor="inlineRadio1">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+                         
+                <input type="radio" class="form-check-input"  formControlName="AffectBudget" name="AffectBudget" [(ngModel)]="AffectBudget" value="0">  
+                <label class="form-check-label" htmlFor="inlineRadio2">No</label>
+            </div>  
+    </div>
+    <button type="submit"class="btn btn-primary mb-2 button">Editar</button>
+</form>

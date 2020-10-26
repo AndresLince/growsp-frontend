@@ -1,0 +1,9 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li *ngIf="pageNumbers.length>1" class="page-item" ><a class="page-link selector" (click)="changePage(-itemsPerPage)">Anteriores</a></li>
+        <li class="page-item" [ngClass]="{'active' : page==currentPage}" *ngFor="let page of pageNumbers">
+            <a class="page-link selector" (click)="selectPage(page)">{{page}}</a>
+        </li>      
+        <li *ngIf="pageNumbers.length>1" class="page-item"><a class="page-link selector" (click)="changePage(+itemsPerPage)">Siguientes</a></li>
+    </ul>
+</nav>

@@ -1,0 +1,133 @@
+<div class="fondo-modal-imagen oculto animated fadeIn fast"
+    [class.oculto]="modalTransactionService.ocultarModal"        
+>   
+
+    <div 
+        class="modal fade show"
+        id="exampleModal" 
+        tabindex="-1" 
+        role="dialog" 
+        aria-labelledby="exampleModalLabel1" 
+        style="display: block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel1">{{modalTransactionService.modalTitle}} </h4>
+                    <button type="button"
+                    class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true"
+                   
+                    >×</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container-fluid">
+                        <form   
+                            class="form-horizontal form-material" 
+                            id="loginform"     
+                            autocomplete="off"
+                            [formGroup]="modalTransactionService.transactionForm"
+                            (ngSubmit)="enviarDatos()"  
+                        >                            
+                            <div class="row">
+                                <div class="col-md-6">                                    
+                                    <div class="form-group">   
+                                        <label>Cuenta:</label>                         
+                                        <select class="form-control input-border"    
+                                            formControlName="account"          
+                                        >                                    
+                                        <option 
+                                        [selected]="account.name===modalTransactionService.account_name"
+                                        (value)="account.id" *ngFor="let account of modalTransactionService.accounts">{{account.name}}</option>                                    
+                                        </select>                                     
+                                    </div>   
+                                </div>                               
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">                                    
+                                    <div class="form-group">   
+                                        <label>Categoria:</label>                         
+                                        <select class="form-control input-border"    
+                                            formControlName="category"  
+                                        >                                    
+                                        <option (value)="category" *ngFor="let category of modalTransactionService.categories"
+                                        [selected]="category.name===modalTransactionService.category_name">{{category.name}}</option>                                    
+                                        </select>                     
+                                    </div>   
+                                </div>
+                                <div class="col-md-6">                                            
+                                    <div class="form-group">  
+                                        <label>Descripción:</label>                                    
+                                        <input                             
+                                            class="form-control input-border"                             
+                                            type="text"                             
+                                            placeholder="Descripción"                                                        
+                                            formControlName="description"
+                                        />                    
+                                    </div>       
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">    
+                                    <div class="form-group">   
+                                        <label>Valor:</label>                                 
+                                        <input 
+                                            type="number" 
+                                            class="form-control input-border" 
+                                            placeholder="Valor"
+                                            formControlName="value"
+                                            (keyup)="calcularTotal()"
+                                        />
+                                    </div>                  
+                                </div>
+                                <div class="col-md-6">    
+                                    <div class="form-group">   
+                                        <label>Cantidad:</label>                                 
+                                        <input 
+                                            type="number" 
+                                            class="form-control input-border" 
+                                            placeholder="Cantidad"
+                                            formControlName="quantity"
+                                            (keyup)="calcularTotal()"
+                                        />
+                                    </div>                  
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">    
+                                    <div class="form-group">   
+                                        <label>Fecha:</label>                                 
+                                        <input 
+                                            type="date" 
+                                            class="form-control input-border" 
+                                            placeholder="Fecha"
+                                            formControlName="date"
+                                        />
+                                    </div>                  
+                                </div>
+                                <div class="col-md-6">    
+                                    <div class="form-group">   
+                                        <label>Total:</label>                                 
+                                        <input 
+                                            type="text" 
+                                            class="form-control input-border" 
+                                            placeholder="Total"
+                                            formControlName="total"
+                                            [(ngModel)]="total"   
+                                            disabled
+                                        />
+                                    </div>                  
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block button">Guardar</button>
+                        </form>                        
+                    </div>                    
+                </div>
+                <div class="modal-footer">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

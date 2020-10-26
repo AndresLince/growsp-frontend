@@ -1,0 +1,36 @@
+<div class="table-responsive">    
+    <table class="table table-sm table-bordered">
+        <thead>
+            <tr>
+                <th *ngIf="fromTransactions" class="w80">Cuenta</th>
+                <th class="w200" *ngIf="fromTransactions">Presupuesto</th>
+                <th class="w80">Valor</th>
+                <th class="w80">Cantidad</th>
+                <th class="w80">Tipo</th>
+                <th class="w150">Categoria</th>
+                <th>Descripcion</th> 
+                <th class="w100">Fecha</th> 
+                <th>Acciones</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let transaction of transactions" [ngClass]="{'table-primary' : transaction.budget_detail_name&&!fromTransactions}">
+                <td *ngIf="fromTransactions">{{transaction.account_name}}</td>
+                <td *ngIf="fromTransactions">{{transaction.budget_detail_name}}</td>                                
+                <td>{{transaction.netValue}}</td>
+                <td>{{transaction.quantity}}</td>
+                <td>{{transaction.type_name}}</td>
+                <td>{{transaction.category_name}}</td>                               
+                <td>{{transaction.description}}</td>  
+                <td>{{transaction.dateString}}</td>    
+                <td >                    
+                    <fa-icon class="selector" [icon]="faPlusCircle" (click)="abrirModal(transaction,1)"></fa-icon>
+                    <fa-icon class="selector" [icon]="faEdit" (click)="abrirModal(transaction,2)"></fa-icon>
+
+                    <fa-icon *ngIf="!fromTransactions&&transaction.account_name" class="selector" [icon]="faLink" (click)="add(transaction)" title="Asociar transacción"></fa-icon>
+                </td>
+            </tr>                          
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,62 @@
+<div class="row animated fadeIn fast">
+    
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <input 
+                    type="text"
+                    class="form-control"
+                    placeholder="Buscar"
+                    (keyup)="search(txtTermino.value)"
+                    #txtTermino
+                />
+              
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="row container">
+            <div class="card" *ngFor="let account of accounts">
+                <div class="card-body">
+                    {{account.name}} {{account.total| currency}}
+                    <fa-icon class="selector" [icon]="faWrench" (click)="showAdjustPage(account)"></fa-icon>
+                </div>
+            </div> 
+        </div>
+    </div>
+  </div>
+  <div class="row animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center" role="alert">
+            <h4 class="alert-heading">Cargando...</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0"> Por favor espere</p>
+        </div>
+    </div>
+  </div>
+
+  <div class="row"  *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Transacciones registradas {{totalTransactions}}</h4>                                
+                <app-transactions-table 
+                    [transactions]="transactions"
+                    [fromTransactions]="true"
+                ></app-transactions-table>
+                <app-paginator
+                    [total]="totalTransactions"
+                    [desde]="desde"
+                    [itemsPerPage]="10"
+                    (newPage)="changePage($event)"
+                ></app-paginator>                
+            </div>
+        </div>
+    </div>
+  </div>  
+  <app-modal-transaction
+    (refreshTransactionEvent)="refreshTransactions($event)"
+  ></app-modal-transaction>
+  <app-modal-adjustment-account
+    (refreshTransactionEvent)="refreshTransactions($event)"
+  ></app-modal-adjustment-account>

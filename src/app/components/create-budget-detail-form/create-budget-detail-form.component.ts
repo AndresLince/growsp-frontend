@@ -1,0 +1,68 @@
+import  Swal  from 'sweetalert2';
+import { BudgetDetailService } from 'src/app/services/budget-detail.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-create-budget-detail-form',
+  templateUrl: './create-budget-detail-form.component.html',
+  styles: [
+  ]
+})
+export class CreateBudgetDetailFormComponent implements OnInit {
+
+  @Input() public id_budget:string;
+  @Output() refreshView:EventEmitter<boolean>=new EventEmitter();  
+
+  public type:string='0';
+
+  public budgetDetailForm=this.formBuilder.group({ 
+    name:[
+      '',
+      [Validators.required]
+    ],
+    value:[
+      '',
+      [Validators.required]
+    ],
+    quantity:[
+      '1',
+      [Validators.required]
+    ],
+    type:[
+      '1',
+      [Validators.required]
+    ]
+  });
+
+  constructor(
+    public formBuilder:FormBuilder,
+    public budgetDetailService:BudgetDetailService
+  ) { }
+
+  ngOnInit(): void {
+  }
+
+  sendData(){
+    
+    this.budgetDetailService.createBudgetDetail(this.id_budget,this.budgetDetailForm.value).subscribe((res:any)=>{
+      Swal.fire(
+          'Buen trabajo!',
+          res.message,
+          'success'
+      );
+      this.refreshView.emit(true);
+    },err=>{
+      const json=err.error.errors;
+      let errorResponse='';
+      for (let i in json) {
+        
+        errorResponse=json[i].msg;      
+      }
+      
+      Swal.fire('Error',errorResponse,'error');
+    }
+    )
+  }
+
+}
