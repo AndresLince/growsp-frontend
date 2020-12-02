@@ -9,9 +9,10 @@ import { CreateBudgetFormComponent } from './create-budget-form/create-budget-fo
 import { EditBudgetFormComponent } from './edit-budget-form/edit-budget-form.component';
 import { CreateBudgetDetailFormComponent } from './create-budget-detail-form/create-budget-detail-form.component';
 import { ModalAdjustmentAccountComponent } from './modal-adjustment-account/modal-adjustment-account.component';
+import { NetFortuneComponent } from './net-fortune/net-fortune.component';
 
 @NgModule({
-  declarations: [ModalTransactionComponent, TransactionsTableComponent, PaginatorComponent, CreateBudgetFormComponent, EditBudgetFormComponent, CreateBudgetDetailFormComponent, ModalAdjustmentAccountComponent],
+  declarations: [ModalTransactionComponent, TransactionsTableComponent, PaginatorComponent, CreateBudgetFormComponent, EditBudgetFormComponent, CreateBudgetDetailFormComponent, ModalAdjustmentAccountComponent, NetFortuneComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -26,7 +27,8 @@ import { ModalAdjustmentAccountComponent } from './modal-adjustment-account/moda
     CreateBudgetFormComponent,
     EditBudgetFormComponent,
     CreateBudgetDetailFormComponent,
-    ModalAdjustmentAccountComponent
+    ModalAdjustmentAccountComponent,
+    NetFortuneComponent
   ]
 })
 export class ComponentsModule { }
