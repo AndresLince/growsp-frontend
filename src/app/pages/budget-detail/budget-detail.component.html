@@ -1,22 +1,36 @@
 <div class="row">
     <div class="col-md-2 mt-3">
         <div class="card">
-            <div class="card-header cardHeader">    
+            <div class="card-header cardHeader">
                 <strong>{{budgetDetail.description}}</strong>
             </div>
             <div class="card-body">
                 <p><strong>Presupuesto:</strong> $ {{budgetDetail.value}}</p>
                 <p><strong>Transacciones:</strong> $ {{budgetDetail.totalTransactions}}</p>
                 <hr>
-                <p class="card-text"><strong>Total:</strong> $ {{budgetDetail.value-budgetDetail.totalTransactions}}</p>             
+                <p class="card-text"><strong>Total:</strong> $ {{budgetDetail.value-budgetDetail.totalTransactions}}</p>
             </div>
         </div>
+        <div class="card">
+          <div class="card-header cardHeader">
+              <h3>Editar</h3>
+          </div>
+
+          <div class="card-body">
+              <app-create-budget-detail-form
+                [form_type]="0"
+                [budgetDetail]="budgetDetail"
+              >
+
+              </app-create-budget-detail-form>
+          </div>
+      </div>
     </div>
-    <div class="col-md-5 mt-3">     
+    <div class="col-md-5 mt-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Asociar transacciones:</h4>     
-                <input 
+                <h4 class="card-title">Asociar transacciones:</h4>
+                <input
                     type="text"
                     class="form-control"
                     placeholder="Buscar"
@@ -24,20 +38,20 @@
                     #txtTerminoBusquedaTransaccion
                 />
                 <br>
-                <app-transactions-table          
-                    [id]="id"           
+                <app-transactions-table
+                    [id]="id"
                     [transactions]="transactions"
                     (refreshTransactions)="refreshTransactions($event)"
-                ></app-transactions-table>  
+                ></app-transactions-table>
             </div>
-        </div> 
-      
-    </div>  
+        </div>
+
+    </div>
     <div class="col-md-5 mt-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Transacciones asociadas:{{this.totalbudgetDetailTransactions}}</h4>     
-                <input 
+                <h4 class="card-title">Transacciones asociadas:{{this.totalbudgetDetailTransactions}}</h4>
+                <input
                     type="text"
                     class="form-control"
                     placeholder="Buscar"
@@ -46,19 +60,19 @@
                 />
                 <br>
 
-                <app-transactions-table 
+                <app-transactions-table
                     [transactions]="budgetDetailTransactions"
-                    [id]="id"                
-                ></app-transactions-table>  
+                    [id]="id"
+                ></app-transactions-table>
 
                 <app-paginator
                     [total]="totalbudgetDetailTransactions"
                     [desde]="desde"
                     [itemsPerPage]="5"
                     (newPage)="changePageBudgetDetailTransactions($event)"
-                ></app-paginator>        
+                ></app-paginator>
             </div>
-        </div>       
+        </div>
     </div>
     <app-modal-transaction
     (refreshTransactionEvent)="addTransaction($event)"

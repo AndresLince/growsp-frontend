@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "growsp-frontend"
+    }
+  },
+  "defaultProject": "growsp-frontend",
+  "cli": {
+    "analytics": "e2fec49c-2fd0-404e-8d11-397b4325184e"
+  }
 }

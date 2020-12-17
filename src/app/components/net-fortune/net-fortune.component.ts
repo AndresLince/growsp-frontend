@@ -25,33 +25,24 @@ export class NetFortuneComponent implements OnInit {
 
     this.accountService.getAccountsTotals().subscribe(resp=>{
 
-      this.accounts = resp.accounts;   
+      this.accounts = resp.accounts;
 
-      resp.accounts.map((account) => {   
-        
-        this.totalIncomes+=account.total;                     
-        //if(budget.type===1){
+      resp.accounts.map((account) => {
 
-          
-        /*}else{
-
-          this.totalExpenses+=budget.total;
-        }*/
-
-        
-      });  
-      console.log(this.totalIncomes);  
+        this.totalIncomes+=account.total;
+      });
 
       this.budgetService.getBudgetsTotals().subscribe(resp=>{
-        
-        resp.budgets.map((budget) => {   
-          console.log(resp);
-          if(budget.AffectBudget){
 
-            this.totalExpenses+=budget.expenses-budget.incomes;  
+        resp.budgets.map((budget) => {
+
+          if(budget.AffectBudget){
+            console.log(budget);
+            this.totalIncomes+=budget.incomes;
+
+            this.totalExpenses+=budget.expenses;
           }
-        });  
-        console.log(this.totalExpenses);  
+        });
 
         this.totals=this.totalIncomes-this.totalExpenses;
       });
