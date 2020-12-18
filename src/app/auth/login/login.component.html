@@ -1,37 +1,38 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 offset-md-4 ">
-            <div class="card login-card"> 
+            <div class="card login-card">
                 <div class="card-header text-center cardHeader">
                     Iniciar sesión
-                </div>       
-                <div class="card-body">                   
-                    <form   
-                        class="form-horizontal form-material" 
-                        id="loginform"     
+                </div>
+                <div class="card-body">
+                    <form
+                        class="form-horizontal form-material"
+                        id="loginform"
                         autocomplete="off"
                         [formGroup]="loginForm"
-                        (ngSubmit)="login()"  
+                        (ngSubmit)="login()"
                     >
-                        <div class="form-group">                            
-                            <input                             
-                                class="form-control input-border"                             
-                                type="email"                             
-                                placeholder="Email"                                                        
+                        <div class="form-group">
+                            <input
+                                class="form-control input-border"
+                                type="email"
+                                placeholder="Email"
                                 formControlName="email"
-                            />                    
+                            />
                         </div>
-                        <div class="form-group">                            
-                            <input 
-                                type="password" 
-                                class="form-control input-border-password" 
+                        <div class="form-group">
+                            <input
+                                type="password"
+                                class="form-control input-border-password"
                                 placeholder="Password"
                                 formControlName="password"
                             />
-                        </div>                
+                        </div>
                         <button type="submit" class="btn btn-primary btn-block button">Ingresar</button>
-                    </form>
+                        <p class="mt-4">¿No tiene una cuenta? <a routerLink="/signup" class="card-link">Cree una.</a></p>
+                      </form>
                 </div>
-            </div>  
-    </div>   
+            </div>
+    </div>
 </div>

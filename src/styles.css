@@ -1,30 +1,30 @@
-.cardHeader{    
+.cardHeader{
     background: #593196!important;
-    color:white!important    
+    color:white!important
 }
 
-.card{    
+.card{
     background: #FFFFFF;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10);
     border-radius: 16px 16px 16px 16px;
-    overflow: hidden;         
+    overflow: hidden;
 }
 .button{
-    border-radius: 8px 8px 8px 8px;   
+    border-radius: 8px 8px 8px 8px;
     background: #593196;
     border-color: black;
 }
 
 .input-border{
-    border-radius: 8px 8px 8px 8px;   
+    border-radius: 8px 8px 8px 8px;
 }
 .input-border-password{
-    border-radius: 8px 0px 0px 8px;   
+    border-radius: 8px 0px 0px 8px;
 }
 
-.login-card{    
-    
-    top: 50%;    
+.login-card{
+
+    top: 50%;
 }
 .bg-primary {
     background-color: #593196 !important;
@@ -38,7 +38,7 @@
     position: absolute;
     right: 0;
     border-top: 1px solid rgba(120, 130, 140, 0.13);
-    background: #ffffff; 
+    background: #ffffff;
 }
 .w80{
     width: 80px;
@@ -81,4 +81,8 @@
 
 .table-primary, .table-primary > td, .table-primary > th {
     background-color: #7d4ec5 !important;
+}
+
+.input-border-password{
+  border-radius: 8px 0px 0px 8px;
 }

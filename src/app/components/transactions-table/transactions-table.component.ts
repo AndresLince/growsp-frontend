@@ -14,7 +14,7 @@ export class TransactionsTableComponent implements OnInit {
   @Input() transactions: any;
   @Input() fromTransactions=false;
   @Input() id:number;
-  @Output() refreshTransactions:EventEmitter<boolean>=new EventEmitter; 
+  @Output() refreshTransactions:EventEmitter<boolean>=new EventEmitter;
 
   faEdit = faEdit;
   faPlusCircle = faPlusCircle;
@@ -27,30 +27,30 @@ export class TransactionsTableComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+
     console.log("id",this.id);
   }
 
   abrirModal(transaction:Transaction,type:number){
-    
+
     this.modalTransactionService.abrirModal(transaction,type);
   }
 
   add(transaction:Transaction){
 
-    const data={id_budget_detail:this.id,id_transaction:transaction.id_transaction};    
+    const data={id_budget_detail:this.id,id_transaction:transaction.id_transaction};
     //this.refreshTransactions.emit(true);
     this.budgetDetailService.createTransaction(data).subscribe(
       resp=>{
-        
+
         this.refreshTransactions.emit(true);
       },err=>{
-        
+
         let errorResponse='';
         if(err.error.msg){
           errorResponse=err.error.msg;
         }
-        
+
         Swal.fire('Error',errorResponse,'error');
       }
     );
