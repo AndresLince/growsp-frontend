@@ -6,7 +6,8 @@ import { NgModule } from '@angular/core';
 
 const routes: Routes = [
     {path:'login',component:LoginComponent},
-    {path:'signup',component:SignupComponent},
+    {path:'signUp',component:SignupComponent},
+    {path:'user/activate/:email/:key',component:LoginComponent},
 ];
 
 @NgModule({

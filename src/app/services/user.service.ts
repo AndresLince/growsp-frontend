@@ -1,5 +1,6 @@
-import { environment } from './../../environments/environment';
-import { LoginForm } from './../interfaces/login-form.interface';
+import { SignUp } from '../interfaces/signup.interface';
+import { environment } from '../../environments/environment';
+import { LoginForm } from '../interfaces/login-form.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {tap, map,catchError} from 'rxjs/operators';
@@ -11,7 +12,7 @@ const base_url=environment.base_url;
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class UserService {
 
   constructor(
     private http:HttpClient,
@@ -54,13 +55,24 @@ export class UsuarioService {
 
         localStorage.setItem('token',resp.token);
 
-        //const {email,google,nombre,role,img='',uid}=resp.usuario;
-        //this.usuario = new Usuario(nombre,email,'',img,google,role,uid);
         return true;
       }),
       catchError(error =>
         of(false)
       )
     )
+  }
+
+  signUp(formData:SignUp){
+    return this.http.post(`${base_url}/login/signup`,formData).pipe(
+      tap((resp:any)=>{
+        localStorage.setItem('token',resp.token);
+      })
+    )
+  }
+
+  activate(activateData:any){
+
+    return this.http.put(`${base_url}/login/`,activateData);
   }
 }

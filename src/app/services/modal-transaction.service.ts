@@ -10,8 +10,8 @@ import { Transaction } from '../models/transaction.model';
   providedIn: 'root'
 })
 export class ModalTransactionService {
-  
-  public transactionForm=this.fb.group({ 
+
+  public transactionForm=this.fb.group({
     type:[
       '',
       [Validators.required]
@@ -35,16 +35,16 @@ export class ModalTransactionService {
     quantity:[
       '',
       [Validators.required]
-    ] 
+    ]
     ,
     date:[
       '',
       [Validators.required]
-    ] 
+    ]
     ,
     total:[
-      ''      
-    ] 
+      ''
+    ]
   });
   public category_name:string='';
   public account_name:string='';
@@ -53,13 +53,13 @@ export class ModalTransactionService {
   public modalTitle:string='';
   public modalType:number=1;
   public id_transaction:string='';
-  
+
 
   public categories=[];
   public accounts=[];
   public budgets=[];
   public budgetDetails=[];
-  
+
   private _ocultarModal:boolean=true;
 
   constructor(public fb:FormBuilder,
@@ -88,39 +88,68 @@ export class ModalTransactionService {
       this.id_transaction=transaction.id_transaction;
       this.modalTitle='Editar Transacción';
       this.transactionForm.controls['date'].setValue(transaction.dateString);
-    }   
-        
+    }
+
     this.transactionForm.controls['description'].setValue(transaction.description);
     this.transactionForm.controls['value'].setValue(transaction.value);
-    this.transactionForm.controls['quantity'].setValue(transaction.quantity);    
-    this.transactionForm.controls['total'].setValue(transaction.netValue);    
-    this.transactionForm.controls['type'].setValue(transaction.type);    
-    
+    this.transactionForm.controls['quantity'].setValue(transaction.quantity);
+    this.transactionForm.controls['total'].setValue(transaction.netValue);
+    this.transactionForm.controls['type'].setValue(transaction.type);
+
     this.transactionCategoryService.getTransactionCategories(transaction.type).subscribe(
       resp=>{
 
         this.categories=resp.transactionCategories;
-        this.category_name=transaction.category_name;  
+        this.category_name=transaction.category_name;
         this.account_name=transaction.account_name;
-        this.transactionForm.controls['account'].setValue(transaction.account_name);       
+        this.transactionForm.controls['account'].setValue(transaction.account_name);
         this.transactionForm.controls['category'].setValue(transaction.category_name);
-         
+
         this.accountService.getAccount().subscribe(
           resp=>{
 
-            this.accounts=resp.accounts;    
+            this.accounts=resp.accounts;
             this.budgetService.getBudgets().subscribe(resp=>{
 
               this.budget_name=transaction.budget_name;
-              this.budgets=resp.budgets;     
+              this.budgets=resp.budgets;
               this._ocultarModal=false;
-                       
-            })   
+
+            })
           }
         );
-        
+
       }
-    );   
+    );
+  }
+
+  abrirModalWithoutTransaction(
+    type:number
+  ){
+
+    //Si se abre para editar una transaccion
+    this.modalTitle='Crear Transacción';
+    this.transactionForm.controls['date'].setValue('');
+    this.modalType=type;
+
+    this.transactionCategoryService.getTransactionCategories(type).subscribe(
+      resp=>{
+
+        this.categories=resp.transactionCategories;
+        this.accountService.getAccount().subscribe(
+          resp=>{
+
+            this.accounts=resp.accounts;
+            this.budgetService.getBudgets().subscribe(resp=>{
+              this.budgets=resp.budgets;
+              this._ocultarModal=false;
+
+            })
+          }
+        );
+
+      }
+    );
   }
 
   closeModal(){
@@ -129,7 +158,7 @@ export class ModalTransactionService {
   }
 
   budgetChange(name:string){
-    
+
     this.budgetDetailService.getBudgetDetails(name).subscribe(resp=>{
       this.budgetDetails=resp.budgetDetails;
     })

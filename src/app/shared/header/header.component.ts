@@ -1,4 +1,5 @@
-import { UsuarioService } from './../../services/usuario.service';
+
+import { UserService } from '../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,14 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private usuarioService:UsuarioService) { }
+  constructor(private userService:UserService) { }
 
   ngOnInit(): void {
   }
 
   cerrarSesion(){
 
-    this.usuarioService.cerrarSesion();    
+    this.userService.cerrarSesion();
   }
 
 

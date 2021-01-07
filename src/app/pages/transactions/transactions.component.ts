@@ -1,3 +1,4 @@
+import { ModalTransactionService } from './../../services/modal-transaction.service';
 import { Account } from './../../models/account.model';
 import { ModalAdjustmentAccountService } from './../../services/modal-adjustment-account.service';
 import { AccountService } from './../../services/account.service';
@@ -8,14 +9,15 @@ import { faWrench} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-transactions',
-  templateUrl: './transactions.component.html'  
+  templateUrl: './transactions.component.html'
 })
 export class TransactionsComponent implements OnInit {
 
   constructor(
-    private transactionService:TransactionService,    
+    private transactionService:TransactionService,
     private accountService:AccountService,
-    private modalAdjustmentAccountService:ModalAdjustmentAccountService
+    private modalAdjustmentAccountService:ModalAdjustmentAccountService,
+    public modalTransactionService:ModalTransactionService,
   ) { }
 
   public totalTransactions:number=0;
@@ -32,8 +34,8 @@ export class TransactionsComponent implements OnInit {
   ngOnInit(): void {
     this.getTransactions(this.desde,this.filter,false);
   }
-    
-  
+
+
 
   getTransactions(desde:number,filter:string='',search){
 
@@ -41,12 +43,12 @@ export class TransactionsComponent implements OnInit {
 
       this.totalTransactions=total;
       this.transactions=transactions;
-      if(!search){        
-        
+      if(!search){
+
         this.transactionsTemp=transactions;
         this.totalTransactionsTemp=total;
-      }        
-      
+      }
+
       this.cargando=false;
 
       this.accountService.getAccountsTotals().subscribe(resp=>{
@@ -56,16 +58,16 @@ export class TransactionsComponent implements OnInit {
   }
 
   search(termino:string){
-    
+
     this.filter=termino;
 
-    if(termino.length===0){      
-      
-      this.filter='no-filter';      
+    if(termino.length===0){
+
+      this.filter='no-filter';
     }
     this.desde=0;
     this.getTransactions(this.desde,this.filter,true);
-  }  
+  }
 
   refreshTransactions(event){
 
@@ -82,6 +84,11 @@ export class TransactionsComponent implements OnInit {
   showAdjustPage(account:Account){
 
     this.modalAdjustmentAccountService.abrirModal(account);
+  }
+
+  abrirModal(type:number){
+
+    this.modalTransactionService.abrirModalWithoutTransaction(type);
   }
 
 

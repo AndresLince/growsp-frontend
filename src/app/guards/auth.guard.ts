@@ -1,4 +1,4 @@
-import { UsuarioService } from './../services/usuario.service';
+import { UserService } from '../services/user.service';
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private usuarioService:UsuarioService,
+  constructor(private userService:UserService,
     private router:Router){
-  
+
   }
 
   canActivate(
@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
     ){
       console.log("paso por el canActivate del guard");
-      return this.usuarioService.validarToken()
+      return this.userService.validarToken()
       .pipe(
         tap(estaAutenticado=>{
           if(!estaAutenticado){
@@ -28,5 +28,5 @@ export class AuthGuard implements CanActivate {
         })
       )
   }
-  
+
 }
