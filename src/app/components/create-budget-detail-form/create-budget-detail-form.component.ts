@@ -59,8 +59,24 @@ export class CreateBudgetDetailFormComponent implements OnInit {
 
   sendData(){
 
-    if(this.form_type=='0'){
-      console.log("edita el detalle");
+    if(this.form_type=='0'){      
+      this.budgetDetailService.updateBudgetDetail(this.budgetDetail.id,this.budgetDetailForm.value).subscribe((res:any)=>{
+        Swal.fire(
+            'Buen trabajo!',
+            res.message,
+            'success'
+        );
+        this.refreshView.emit(true);
+      },err=>{
+        const json=err.error.errors;
+        let errorResponse='';
+        for (let i in json) {
+
+          errorResponse=json[i].msg;
+        }
+
+        Swal.fire('Error',errorResponse,'error');
+      });
     }
 
     if(this.form_type=='1'){

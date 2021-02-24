@@ -78,4 +78,9 @@ export class BudgetDetailService {
     console.log(id_budget);
     return this.http.post(`${base_url}/budgetDetail/create/${id_budget}`,data,this.headers)
   }
+
+  updateBudgetDetail(id_budget_detail:string,data:any){
+    console.log(id_budget_detail);
+    return this.http.patch(`${base_url}/budgetDetail/${id_budget_detail}`,data,this.headers)
+  }
 }

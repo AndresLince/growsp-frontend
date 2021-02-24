@@ -63,6 +63,9 @@ export class LoginComponent implements OnInit {
             errorResponse=json[i].msg;
           }
         }
+        if(errorResponse==''){
+          errorResponse="Error de conexión por favor verifica tu conexión a internet."
+        }
 
         Swal.fire('Error',errorResponse,'error');
       }
