@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
 import { BudgetComponent } from './budget/budget.component';
+import { TransactionCategoriesComponent } from './transaction-categories/transaction-categories.component';
 
 const routes: Routes = [ 
     {
@@ -17,7 +18,8 @@ const routes: Routes = [
           {path:'transactions',component:TransactionsComponent,data:{title:'Transactions'}},
           {path:'budgets',component:BudgetsComponent,data:{title:'Budgets'}},
           {path:'budgetDetail/edit/:id',component:BudgetDetailComponent,data:{title:'Budgets'}},
-          {path:'budget/edit/:id',component:BudgetComponent,data:{title:'Budgets'}}
+          {path:'budget/edit/:id',component:BudgetComponent,data:{title:'Budgets'}},
+          {path:'transactionCategories',component:TransactionCategoriesComponent,data:{title:'Budgets'}}
         ]
     },    
 ];

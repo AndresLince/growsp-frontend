@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-expand-sm navbar-dark bg-primary">
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -11,10 +11,28 @@
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/dashboard/budgets">Budgets</a>            
           </li>
-              
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/dashboard/transactionCategories">Transaction Categories</a>            
+          </li>
+          
         </ul>
     </div>    
     <div class="text-left">
         <button (click)="cerrarSesion()"  class="btn btn-outline-success my-2 my-sm-0" >Cerrar Sesión</button>
     </div>
   </nav>
+  <!--<p>
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My App</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar>
+  </p>-->

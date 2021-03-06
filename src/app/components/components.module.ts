@@ -10,14 +10,17 @@ import { EditBudgetFormComponent } from './edit-budget-form/edit-budget-form.com
 import { CreateBudgetDetailFormComponent } from './create-budget-detail-form/create-budget-detail-form.component';
 import { ModalAdjustmentAccountComponent } from './modal-adjustment-account/modal-adjustment-account.component';
 import { NetFortuneComponent } from './net-fortune/net-fortune.component';
+import {MatListModule} from '@angular/material/list';
+import { TransactionCategoryFormComponent } from './transaction-category-form/transaction-category-form.component'; 
 
 @NgModule({
-  declarations: [ModalTransactionComponent, TransactionsTableComponent, PaginatorComponent, CreateBudgetFormComponent, EditBudgetFormComponent, CreateBudgetDetailFormComponent, ModalAdjustmentAccountComponent, NetFortuneComponent],
+  declarations: [ModalTransactionComponent, TransactionsTableComponent, PaginatorComponent, CreateBudgetFormComponent, EditBudgetFormComponent, CreateBudgetDetailFormComponent, ModalAdjustmentAccountComponent, NetFortuneComponent, TransactionCategoryFormComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatListModule
   ],
   exports:[
     ModalTransactionComponent,
@@ -28,7 +31,8 @@ import { NetFortuneComponent } from './net-fortune/net-fortune.component';
     EditBudgetFormComponent,
     CreateBudgetDetailFormComponent,
     ModalAdjustmentAccountComponent,
-    NetFortuneComponent
+    NetFortuneComponent,
+    TransactionCategoryFormComponent
   ]
 })
 export class ComponentsModule { }

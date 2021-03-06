@@ -64,7 +64,7 @@ export class ModalTransactionComponent implements OnInit {
         
       },
       err=>{
-        
+        console.log(err.error);
         const json=err.error.errors;
         let errorResponse='';
         for (let i in json) {
@@ -72,7 +72,7 @@ export class ModalTransactionComponent implements OnInit {
           errorResponse=json[i].msg;      
         }
         
-        Swal.fire('Error',errorResponse,'error');
+        Swal.fire('Error','asdasd','error');
       })
     }   
   }

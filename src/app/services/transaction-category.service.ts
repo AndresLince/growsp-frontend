@@ -1,3 +1,4 @@
+import { TransactionCategory } from './../models/transactionCategory.model';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -38,5 +39,25 @@ export class TransactionCategoryService {
         
       )
     )
+  }
+  getAllTransactionCategories(){
+
+    return this.http.get<any>(`${base_url}/transactionCategory`,this.headers).pipe(
+      map(resp=>{
+        
+        const transactionCategories=resp.transactionCategories.map(
+          transactionCategory=>new TransactionCategory(
+            transactionCategory.id,
+            transactionCategory.name,            
+            transactionCategory.type        
+          )
+        )
+        return {transactionCategories};
+      })
+    );
+  }
+
+  createTransactionCategory(data:any){
+    return this.http.post(`${base_url}/transactionCategory/`,data,this.headers)
   }
 }

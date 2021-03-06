@@ -22,15 +22,7 @@ export class CreateBudgetDetailFormComponent implements OnInit {
     name:[
       '',
       [Validators.required]
-    ],
-    value:[
-      '',
-      [Validators.required]
-    ],
-    quantity:[
-      '1',
-      [Validators.required]
-    ],
+    ],   
     type:[
       '1',
       [Validators.required]
