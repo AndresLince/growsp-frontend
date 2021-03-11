@@ -51,6 +51,11 @@ export class AccountService {
     return this.http.post(`${base_url}/account/adjustment/`,data,this.headers)
   }
 
+  createAccount(data:any){
+
+    return this.http.post(`${base_url}/account/`,data,this.headers)
+  }
+
 
 
   

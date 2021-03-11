@@ -4,7 +4,7 @@ import { ModalAdjustmentAccountService } from './../../services/modal-adjustment
 import { AccountService } from './../../services/account.service';
 import { Transaction } from './../../models/transaction.model';
 import { TransactionService } from './../../services/transaction.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { faWrench} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,6 +12,7 @@ import { faWrench} from '@fortawesome/free-solid-svg-icons';
   templateUrl: './transactions.component.html'
 })
 export class TransactionsComponent implements OnInit {
+  @ViewChild('txtTermino') txtTermino;
 
   constructor(
     private transactionService:TransactionService,
@@ -70,8 +71,8 @@ export class TransactionsComponent implements OnInit {
   }
 
   refreshTransactions(event){
-
-    this.getTransactions(this.desde,this.filter,false);
+    this.txtTermino.nativeElement.value = '';
+    this.getTransactions(0,'',false);
   }
 
   changePage(valor:number){

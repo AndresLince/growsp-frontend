@@ -82,6 +82,9 @@
 .table-primary, .table-primary > td, .table-primary > th {
     background-color: #7d4ec5 !important;
 }
+.table-primary {
+    background-color: #7d4ec5 !important;
+}
 
 .input-border-password{
   border-radius: 8px 0px 0px 8px;
@@ -89,3 +92,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.has-budget-detail{
+    background-color: #7d4ec5 !important;
+}

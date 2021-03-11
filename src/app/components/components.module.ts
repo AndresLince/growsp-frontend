@@ -10,17 +10,24 @@ import { EditBudgetFormComponent } from './edit-budget-form/edit-budget-form.com
 import { CreateBudgetDetailFormComponent } from './create-budget-detail-form/create-budget-detail-form.component';
 import { ModalAdjustmentAccountComponent } from './modal-adjustment-account/modal-adjustment-account.component';
 import { NetFortuneComponent } from './net-fortune/net-fortune.component';
-import {MatListModule} from '@angular/material/list';
-import { TransactionCategoryFormComponent } from './transaction-category-form/transaction-category-form.component'; 
+import { MatListModule } from '@angular/material/list';
+import { TransactionCategoryFormComponent } from './transaction-category-form/transaction-category-form.component';
+import { AccountFormComponent } from './account-form/account-form.component'; 
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button'; 
+import {MatDividerModule} from '@angular/material/divider'; 
 
 @NgModule({
-  declarations: [ModalTransactionComponent, TransactionsTableComponent, PaginatorComponent, CreateBudgetFormComponent, EditBudgetFormComponent, CreateBudgetDetailFormComponent, ModalAdjustmentAccountComponent, NetFortuneComponent, TransactionCategoryFormComponent],
+  declarations: [ModalTransactionComponent, TransactionsTableComponent, PaginatorComponent, CreateBudgetFormComponent, EditBudgetFormComponent, CreateBudgetDetailFormComponent, ModalAdjustmentAccountComponent, NetFortuneComponent, TransactionCategoryFormComponent, AccountFormComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    MatListModule
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDividerModule
   ],
   exports:[
     ModalTransactionComponent,
@@ -32,7 +39,8 @@ import { TransactionCategoryFormComponent } from './transaction-category-form/tr
     CreateBudgetDetailFormComponent,
     ModalAdjustmentAccountComponent,
     NetFortuneComponent,
-    TransactionCategoryFormComponent
+    TransactionCategoryFormComponent,
+    AccountFormComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,47 +1,22 @@
-<!--<mat-list>
-    <mat-list-item *ngFor="let transaction of transactions">        
-        <h3 matLine>{{transaction.netValue}} - {{transaction.description}} </h3>
-        <h3 matLine>Cuenta: {{transaction.account_name}} </h3>
-        <h3 matLine>Presupuesto: {{transaction.budget_detail_name}} </h3>
-        <p matLine>
-            <span> {{transaction.description}} </span>
-            <span class="demo-2"> -- {{transaction.description}} </span>
-        </p>
+<mat-list dense>
+    <mat-list-item *ngFor="let transaction of transactions" [class.my-class]="transaction.budget_detail_name&&!fromTransactions">                
+        <h3 matLine><strong>{{transaction.netValue}} - {{transaction.description}}</strong></h3>
+        <div matLine><strong>Cuenta: </strong>{{transaction.account_name}} </div>
+        <h4 matLine><strong>Presupuesto: </strong> {{transaction.budget_detail_name}} </h4>    
+        <h4 matLine><strong>Categoria: </strong>{{transaction.category_name}}</h4>  
+        <h4 matLine><strong>Tipo: </strong>{{transaction.type_name}}<strong> Fecha: </strong>{{transaction.dateString}}</h4>   
+        
+        <div class="col-2 col-offset-10">
+            <button mat-icon-button class="selector"  style="float:right" (click)="abrirModal(transaction,1)">        
+                <mat-icon [ngStyle]="{'color':'#593196'}">add_circle</mat-icon>                
+            </button>        
+            <button mat-icon-button class="selector" style="float:right" (click)="abrirModal(transaction,2)">        
+                <mat-icon [ngStyle]="{'color':'#593196'}">edit</mat-icon>
+            </button>          
+            <button *ngIf="!fromTransactions&&transaction.account_name" title="Asociar transacción" mat-icon-button class="selector" style="float:right" (click)="add(transaction)">        
+                <mat-icon [ngStyle]="{'color':'#593196'}">link</mat-icon>
+            </button> 
+        </div>       
+        <mat-divider class="mt-4"></mat-divider>
     </mat-list-item>
-</mat-list>-->
-<div class="table-responsive">    
-    <table class="table table-sm table-bordered">
-        <thead>
-            <tr>
-                <th *ngIf="fromTransactions" class="w80">Cuenta</th>
-                <th class="w200" *ngIf="fromTransactions">Presupuesto</th>
-                <th class="w80">Valor</th>
-                <th class="w80">Cantidad</th>
-                <th class="w80">Tipo</th>
-                <th class="w150">Categoria</th>
-                <th>Descripcion</th> 
-                <th class="w100">Fecha</th> 
-                <th>Acciones</th> 
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let transaction of transactions" [ngClass]="{'table-primary' : transaction.budget_detail_name&&!fromTransactions}">
-                <td *ngIf="fromTransactions">{{transaction.account_name}}</td>
-                <td *ngIf="fromTransactions">{{transaction.budget_detail_name}}</td>                                
-                <td>{{transaction.netValue}}</td>
-                <td>{{transaction.quantity}}</td>
-                <td>{{transaction.type_name}}</td>
-                <td>{{transaction.category_name}}</td>                               
-                <td>{{transaction.description}}</td>  
-                <td>{{transaction.dateString}}</td>    
-                <td >                    
-                    <fa-icon class="selector" [icon]="faPlusCircle" (click)="abrirModal(transaction,1)"></fa-icon>
-                    <fa-icon class="selector" [icon]="faEdit" (click)="abrirModal(transaction,2)"></fa-icon>
-
-                    <fa-icon *ngIf="!fromTransactions&&transaction.account_name" class="selector" [icon]="faLink" (click)="add(transaction)" title="Asociar transacción"></fa-icon>
-                </td>
-            </tr>                          
-        </tbody>
-    </table>
-
-</div>
+</mat-list>

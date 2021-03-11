@@ -1,30 +1,5 @@
-<div class="row animated fadeIn fast">
-
-    <div class="col-4">
-        <div class="card">
-            <div class="card-body">
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Buscar"
-                    (keyup)="search(txtTermino.value)"
-                    #txtTermino
-                />
-
-            </div>
-        </div>
-    </div>
-    <div class="col-2">
-      <div class="card">
-        <div class="card-body">
-          <button class="btn btn-success" (click)="abrirModal(1)">Crear Ingreso</button>
-          <button  class="btn btn-danger ml-2"  (click)="abrirModal(0)">Crear Gasto</button>
-
-        </div>
-      </div>
-
-    </div>
-    <div class="col-6">
+<div class="row animated fadeIn fast"> 
+    <div class="col-lg-6 col-sm-12">
         <div class="row container">
             <div class="card" *ngFor="let account of accounts">
                 <div class="card-body">
@@ -35,6 +10,31 @@
         </div>
     </div>
   </div>
+     
+  <div class="col-lg-2 col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <button class="btn btn-success" (click)="abrirModal(1)">Crear Ingreso</button>
+        <button  class="btn btn-danger ml-2"  (click)="abrirModal(0)">Crear Gasto</button>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="col-lg-4 sm-12 offset-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Buscar"
+                (keyup)="search(txtTermino.value)"
+                #txtTermino
+            />
+
+        </div>
+    </div>
+</div>
 
   <div class="row animated fadeIn fast" *ngIf="cargando">
     <div class="col-12">
@@ -47,7 +47,7 @@
   </div>
 
   <div class="row"  *ngIf="!cargando">
-    <div class="col-12">
+    <div class="col-lg-4 sm-12 offset-lg-4">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Transacciones registradas {{totalTransactions}}</h4>

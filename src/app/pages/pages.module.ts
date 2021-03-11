@@ -1,4 +1,3 @@
-import { TransactionCategoryFormComponent } from './../components/transaction-category-form/transaction-category-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from './../components/components.module';
 import { SharedModule } from './../shared/shared.module';
@@ -15,11 +14,12 @@ import { BudgetComponent } from './budget/budget.component';
 import { TransactionCategoriesComponent } from './transaction-categories/transaction-categories.component';
 import {MatListModule} from '@angular/material/list'; 
 import {MatCardModule} from '@angular/material/card'; 
-import {MatIconModule} from '@angular/material/icon'; 
+import {MatIconModule} from '@angular/material/icon';
+import { AccountsComponent } from './accounts/accounts.component'; 
 
 
 @NgModule({
-  declarations: [DashboardComponent, PagesComponent, TransactionsComponent, BudgetsComponent, BudgetDetailComponent, BudgetComponent, TransactionCategoriesComponent],
+  declarations: [DashboardComponent, PagesComponent, TransactionsComponent, BudgetsComponent, BudgetDetailComponent, BudgetComponent, TransactionCategoriesComponent, AccountsComponent],
   imports: [
     CommonModule,
     RouterModule,

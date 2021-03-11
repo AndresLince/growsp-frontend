@@ -1,3 +1,4 @@
+import { AccountsComponent } from './accounts/accounts.component';
 import { BudgetsComponent } from './budgets/budgets.component';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
           {path:'budgets',component:BudgetsComponent,data:{title:'Budgets'}},
           {path:'budgetDetail/edit/:id',component:BudgetDetailComponent,data:{title:'Budgets'}},
           {path:'budget/edit/:id',component:BudgetComponent,data:{title:'Budgets'}},
-          {path:'transactionCategories',component:TransactionCategoriesComponent,data:{title:'Budgets'}}
+          {path:'transactionCategories',component:TransactionCategoriesComponent,data:{title:'Budgets'}},
+          {path:'accounts',component:AccountsComponent,data:{title:'Accounts'}}
         ]
     },    
 ];

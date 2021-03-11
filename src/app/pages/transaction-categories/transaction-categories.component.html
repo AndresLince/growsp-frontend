@@ -2,11 +2,11 @@
     [form_type]="1"
 ></app-transaction-category-form>
 <mat-list>
-    <mat-list-item *ngFor="let transaction of transactionCategories">     
+    <mat-list-item *ngFor="let transactionCategory of transactionCategories">     
         <mat-icon mat-list-icon>folder</mat-icon>   
-        <h3 matLine>{{transaction.name}}</h3>        
+        <h3 matLine>{{transactionCategory.name}}</h3>        
         <p matLine>
-            <span class="demo-2">{{transaction.type_name}}</span>
+            <span class="demo-2">{{transactionCategory.type_name}}</span>
         </p>
     </mat-list-item>
 </mat-list>
