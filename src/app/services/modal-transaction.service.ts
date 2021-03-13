@@ -96,7 +96,7 @@ export class ModalTransactionService {
     this.transactionForm.controls['total'].setValue(transaction.netValue);
     this.transactionForm.controls['type'].setValue(transaction.type);
 
-    this.transactionCategoryService.getTransactionCategories(transaction.type).subscribe(
+    this.transactionCategoryService.getTransactionCategories(0,'no-filter',1,transaction.type).subscribe(
       resp=>{
 
         this.categories=resp.transactionCategories;
@@ -125,21 +125,20 @@ export class ModalTransactionService {
 
   abrirModalWithoutTransaction(
     type:number
-  ){
-
+  ){    
     //Si se abre para editar una transaccion
     this.modalTitle='Crear Transacción';
     this.transactionForm.controls['date'].setValue('');
     this.modalType=type;
-
-    this.transactionCategoryService.getTransactionCategories(type).subscribe(
+    this.transactionForm.controls['type'].setValue(type);
+    this.transactionCategoryService.getTransactionCategories(0,'no-filter',1,type).subscribe(
       resp=>{
-
-        this.categories=resp.transactionCategories;
+        this.categories=resp.transactionCategories;        
+        this.transactionForm.controls.category.patchValue(this.categories[0].name);
         this.accountService.getAccount().subscribe(
           resp=>{
-
             this.accounts=resp.accounts;
+            this.transactionForm.controls.account.patchValue(this.accounts[0].name);
             this.budgetService.getBudgets().subscribe(resp=>{
               this.budgets=resp.budgets;
               this._ocultarModal=false;

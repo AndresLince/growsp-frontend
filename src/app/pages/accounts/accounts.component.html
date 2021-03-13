@@ -2,9 +2,26 @@
     [form_type]="1"
     (refreshView)="getAccounts()"
 ></app-account-form>
+<div class="card">
+    <div class="card-body">
+    <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar"
+        (keyup)="search(txtTermino.value)"
+        #txtTermino
+    />
+</div>
+<p>Cuentas registradas {{totalAccounts}}</p>
 <mat-list>
     <mat-list-item *ngFor="let account of accounts">     
         <mat-icon mat-list-icon>folder</mat-icon>   
         <h3 matLine>{{account.name}}</h3>               
     </mat-list-item>
 </mat-list>
+<app-paginator
+    [total]="totalAccounts"
+    [desde]="desde"
+    [itemsPerPage]="10"
+    (newPage)="changePage($event)"
+></app-paginator>

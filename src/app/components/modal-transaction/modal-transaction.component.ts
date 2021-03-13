@@ -1,8 +1,7 @@
-import { Transaction } from './../../models/transaction.model';
+import { UtilsService } from './../../services/utils.service';
 import { TransactionService } from './../../services/transaction.service';
 import { ModalTransactionService } from './../../services/modal-transaction.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-transaction',
@@ -11,14 +10,13 @@ import Swal from 'sweetalert2';
   ]
 })
 export class ModalTransactionComponent implements OnInit {
-
   @Output() refreshTransactionEvent:EventEmitter<number>=new EventEmitter; 
   total:number;
 
-  constructor(
-    
+  constructor(    
     public modalTransactionService:ModalTransactionService,
     public transactionService:TransactionService,    
+    public utilsService:UtilsService
   ) { }
 
   ngOnInit(): void {
@@ -29,58 +27,28 @@ export class ModalTransactionComponent implements OnInit {
     this.modalTransactionService.closeModal();
   }
   
-  enviarDatos(){
-    
+  enviarDatos(){    
     if(this.modalTransactionService.modalType===2){
-
-      this.transactionService.editTransaction(this.modalTransactionService.id_transaction,this.modalTransactionService.transactionForm.value).subscribe(resp=>{
-            
+      this.transactionService.editTransaction(this.modalTransactionService.id_transaction,this.modalTransactionService.transactionForm.value).subscribe(resp=>{            
         this.closeModal();
-        this.refreshTransactionEvent.emit(1);          
-        
+        this.refreshTransactionEvent.emit(1); 
       },
       err=>{
-
-        let errorResponse='';
-        if(err.error.msg){
-          errorResponse=err.error.msg;
-        }else{
-          const json=err.error.errors;
-          
-          for (let i in json) {
-            
-            errorResponse=json[i].msg;      
-          }
-        }
-        
-        Swal.fire('Error',errorResponse,'error');
+        this.utilsService.showAlertError(err);
       })
     }else{
-
-      this.transactionService.createTransaction(this.modalTransactionService.transactionForm.value).subscribe((resp:any)=>{
-            
+      this.transactionService.createTransaction(this.modalTransactionService.transactionForm.value).subscribe((resp:any)=>{            
         this.closeModal();
-        this.refreshTransactionEvent.emit(resp.transaction.insertId);          
-        
+        this.refreshTransactionEvent.emit(resp.transaction.insertId);                  
       },
       err=>{
-        console.log(err.error);
-        const json=err.error.errors;
-        let errorResponse='';
-        for (let i in json) {
-          
-          errorResponse=json[i].msg;      
-        }
-        
-        Swal.fire('Error','asdasd','error');
+        this.utilsService.showAlertError(err);
       })
     }   
   }
-  calcularTotal(){
-      
+  calcularTotal(){      
       const form=this.modalTransactionService.transactionForm.value;
       if(form.value&&form.quantity){
-
         this.total=form.value*form.quantity;
       }
   }

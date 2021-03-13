@@ -26,12 +26,12 @@ export class AccountService {
     }
   }
 
-  getAccount(){
+  getAccount(desde:number=0,filter:string='no-filter'){
 
-    return this.http.get<any>(`${base_url}/account`,this.headers).pipe(
+    return this.http.get<any>(`${base_url}/account/${desde}/${filter}`,this.headers).pipe(
       map(resp=>{      
         
-        return {accounts:resp.accounts};
+        return {accounts:resp.accounts,total:resp.total};
       })
     )
   }

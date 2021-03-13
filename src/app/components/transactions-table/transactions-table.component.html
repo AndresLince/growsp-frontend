@@ -1,5 +1,5 @@
 <mat-list dense>
-    <mat-list-item *ngFor="let transaction of transactions" [class.my-class]="transaction.budget_detail_name&&!fromTransactions">                
+    <mat-list-item *ngFor="let transaction of transactions" [class.has-budget-detail]="transaction.budget_detail_name&&!fromTransactions">                
         <h3 matLine><strong>{{transaction.netValue}} - {{transaction.description}}</strong></h3>
         <div matLine><strong>Cuenta: </strong>{{transaction.account_name}} </div>
         <h4 matLine><strong>Presupuesto: </strong> {{transaction.budget_detail_name}} </h4>    
@@ -7,13 +7,28 @@
         <h4 matLine><strong>Tipo: </strong>{{transaction.type_name}}<strong> Fecha: </strong>{{transaction.dateString}}</h4>   
         
         <div class="col-2 col-offset-10">
-            <button mat-icon-button class="selector"  style="float:right" (click)="abrirModal(transaction,1)">        
+            <button 
+                mat-icon-button 
+                class="selector"  
+                style="float:right"
+                 title="Agregar transacción"          
+                (click)="abrirModal(transaction,1)">        
                 <mat-icon [ngStyle]="{'color':'#593196'}">add_circle</mat-icon>                
             </button>        
-            <button mat-icon-button class="selector" style="float:right" (click)="abrirModal(transaction,2)">        
+            <button 
+                mat-icon-button 
+                class="selector" 
+                style="float:right"
+                 title="Editar transacción"          
+                (click)="abrirModal(transaction,2)">        
                 <mat-icon [ngStyle]="{'color':'#593196'}">edit</mat-icon>
             </button>          
-            <button *ngIf="!fromTransactions&&transaction.account_name" title="Asociar transacción" mat-icon-button class="selector" style="float:right" (click)="add(transaction)">        
+            <button  
+                mat-icon-button 
+                *ngIf="!fromTransactions&&transaction.account_name" 
+                title="Asociar transacción"                
+                class="selector" 
+                style="float:right" (click)="add(transaction)">        
                 <mat-icon [ngStyle]="{'color':'#593196'}">link</mat-icon>
             </button> 
         </div>       

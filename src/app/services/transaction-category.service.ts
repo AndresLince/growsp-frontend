@@ -27,35 +27,26 @@ export class TransactionCategoryService {
     }
   }
 
-  getTransactionCategories(type:number){
+  getTransactionCategories(desde:number=0,filter:string='no-filter',all:number,type:number){    
 
-    return this.http.get<any>(`${base_url}/transactionCategory`,this.headers).pipe(
-      map(resp=>{      
-        
-        const transactionCategories=resp.transactionCategories.filter(transactionCategory=>transactionCategory.type===type);
-        
-        return {transactionCategories:transactionCategories};
-      }
-        
-      )
-    )
-  }
-  getAllTransactionCategories(){
-
-    return this.http.get<any>(`${base_url}/transactionCategory`,this.headers).pipe(
-      map(resp=>{
-        
-        const transactionCategories=resp.transactionCategories.map(
+    return this.http.get<any>(`${base_url}/transactionCategory/${desde}/${filter}/${all}`,this.headers).pipe(
+      map(resp=>{   
+        var transactionCategories=resp.transactionCategories.map(
           transactionCategory=>new TransactionCategory(
             transactionCategory.id,
             transactionCategory.name,            
             transactionCategory.type        
           )
-        )
-        return {transactionCategories};
-      })
-    );
-  }
+        )    
+        if(type!=2){          
+          var transactionCategories=resp.transactionCategories.filter(transactionCategory=>transactionCategory.type===type);          
+        }      
+        return {transactionCategories:transactionCategories,total:resp.total};
+      }
+        
+      )
+    )
+  } 
 
   createTransactionCategory(data:any){
     return this.http.post(`${base_url}/transactionCategory/`,data,this.headers)
