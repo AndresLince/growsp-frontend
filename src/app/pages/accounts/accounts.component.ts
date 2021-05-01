@@ -14,6 +14,8 @@ export class AccountsComponent implements OnInit {
   public accountsTemp:Account[];
   public accounts:Account[];
   public filter:string='no-filter';
+  public create:boolean=false;
+  public list:boolean=true;
 
   constructor(
     public accountService:AccountService
@@ -33,6 +35,7 @@ export class AccountsComponent implements OnInit {
         }
         this.accounts=resp.accounts;
         this.totalAccounts=resp.total;
+        this.showView('list');
       }
     )
   }
@@ -51,6 +54,23 @@ export class AccountsComponent implements OnInit {
     }
     this.desde=0;
     this.getAccounts(this.desde,this.filter,true);
+  }
+
+  showView(view:string){
+    switch (view) {
+      case 'create':
+        this.create=true;
+        this.list=false;
+        break;
+      case 'list':
+        this.create=false;
+        this.list=true;
+        break;
+    
+      default:
+        break;
+    }
+  
   }
 
 }

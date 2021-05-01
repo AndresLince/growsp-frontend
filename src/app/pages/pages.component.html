@@ -2,7 +2,9 @@
     <app-header></app-header>     
     <div class="page-wrapper mt-2">
       <div class="container-fluid">
-    
+        <div class="uploader-status spinner-background" *ngIf="utilsService.getLoading()">
+          <mat-spinner class="spinner"></mat-spinner>
+        </div>
         <router-outlet></router-outlet>
         <!--<div class="row">
           <div class="col-12">

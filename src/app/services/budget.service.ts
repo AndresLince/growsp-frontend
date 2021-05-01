@@ -1,3 +1,4 @@
+import { UtilsService } from './utils.service';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
@@ -12,7 +13,7 @@ export class BudgetService {
 
   public categories=[{id:1,name:'Categoria 1'},{id:2,name:'Categoria 2'},{id:3,name:'Categoria 3'}];
 
-  constructor(public http:HttpClient) { }
+  constructor(public http:HttpClient,public utilsService:UtilsService) { }
 
   get token():string{
     return localStorage.getItem('token')||'';
@@ -36,11 +37,11 @@ export class BudgetService {
     )
   }  
 
-  getBudgetsTotals(){
-
+  getBudgetsTotals(){    
+    this.utilsService.changeLoading(true);
     return this.http.get<any>(`${base_url}/budget/totals`,this.headers).pipe(
       map(resp=>{      
-        
+        this.utilsService.changeLoading(false);
         return {budgets:resp.budgets};
       })
     )
@@ -49,6 +50,11 @@ export class BudgetService {
   createBudget(data:any){
 
     return this.http.post(`${base_url}/budget`,data,this.headers);
+  }
+
+  createBudgetCopy(data:any){
+
+    return this.http.post(`${base_url}/budget/copy`,data,this.headers);
   }
 
   getBudgetDetails(id:string){

@@ -1,7 +1,10 @@
+<button class="btn btn-success mb-4" (click)="showView('create')" *ngIf="list" >Crear Categoria</button>
+<button class="btn btn-success mb-4" (click)="showView('list')" *ngIf="create" >Listado de categorias</button>
 <app-transaction-category-form
+    *ngIf="create" 
     [form_type]="1"
 ></app-transaction-category-form>
-<div class="card">
+<div class="card" *ngIf="list" >
     <div class="card-body">
     <input
         type="text"
@@ -11,7 +14,7 @@
         #txtTermino
     />
 </div>
-<mat-list>
+<mat-list *ngIf="list" >
     <mat-list-item *ngFor="let transactionCategory of transactionCategories">     
         <mat-icon mat-list-icon>folder</mat-icon>   
         <h3 matLine>{{transactionCategory.name}}</h3>        
@@ -21,6 +24,7 @@
     </mat-list-item>
 </mat-list>
 <app-paginator
+    *ngIf="list"    
     [total]="total"
     [desde]="desde"
     [itemsPerPage]="10"

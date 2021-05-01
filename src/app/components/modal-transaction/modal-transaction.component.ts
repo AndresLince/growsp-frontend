@@ -28,6 +28,7 @@ export class ModalTransactionComponent implements OnInit {
   }
   
   enviarDatos(){    
+    this.utilsService.changeLoading(true);
     if(this.modalTransactionService.modalType===2){
       this.transactionService.editTransaction(this.modalTransactionService.id_transaction,this.modalTransactionService.transactionForm.value).subscribe(resp=>{            
         this.closeModal();
@@ -35,6 +36,9 @@ export class ModalTransactionComponent implements OnInit {
       },
       err=>{
         this.utilsService.showAlertError(err);
+        this.utilsService.changeLoading(false);
+      },()=>{
+        this.utilsService.changeLoading(false);
       })
     }else{
       this.transactionService.createTransaction(this.modalTransactionService.transactionForm.value).subscribe((resp:any)=>{            
@@ -43,6 +47,9 @@ export class ModalTransactionComponent implements OnInit {
       },
       err=>{
         this.utilsService.showAlertError(err);
+        this.utilsService.changeLoading(false);
+      },()=>{
+        this.utilsService.changeLoading(false);
       })
     }   
   }

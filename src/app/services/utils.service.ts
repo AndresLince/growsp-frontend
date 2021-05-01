@@ -6,12 +6,14 @@ import { Injectable } from '@angular/core';
 })
 export class UtilsService {
 
+  public loading:boolean=false;
+
   constructor() { }
 
   showAlertError(err){
     let errorResponse='';
-    if(err.error.msg){
-      errorResponse=err.error.msg;
+    if(err.error.message){
+      errorResponse=err.error.message;
     }else{
       const json=err.error.errors;
       
@@ -21,5 +23,15 @@ export class UtilsService {
       }
     }
     Swal.fire('Error',errorResponse,'error');
+  }
+
+  changeLoading(loading:boolean){
+    setTimeout(() => {
+      this.loading=loading;
+    });   
+  }
+
+  getLoading(){
+    return this.loading;
   }
 }

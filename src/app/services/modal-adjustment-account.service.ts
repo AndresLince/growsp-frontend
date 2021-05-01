@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ModalAdjustmentAccountService {
+  actualAccount:string='';
 
   public adjustmentForm=this.formBuilder.group({ 
     total:[
@@ -50,9 +51,14 @@ export class ModalAdjustmentAccountService {
   abrirModal(
     account:Account
   ){
-    this._ocultarModal=false;
-    console.log(account);
+    if(this.actualAccount!=account.name){
+      this.adjustmentForm.controls['value'].setValue(0);
+      this.adjustmentForm.controls['adjustment'].setValue(0);
+    }    
+    this.actualAccount=account.name;
+    this._ocultarModal=false;    
     this.adjustmentForm.controls['total'].setValue(account.total);
+    
     this.adjustmentForm.controls['id_account'].setValue(account.id_account);
     this.modalTitle="Ajuste de cuenta "+account.name;
   }

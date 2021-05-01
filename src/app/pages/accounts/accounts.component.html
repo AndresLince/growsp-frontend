@@ -1,8 +1,10 @@
-<app-account-form  
+<button class="btn btn-success mb-4" (click)="showView('create')" *ngIf="list" >Crear Cuenta</button>
+<button class="btn btn-success mb-4" (click)="showView('list')" *ngIf="create" >Listado de cuentas</button>
+<app-account-form *ngIf="create" 
     [form_type]="1"
     (refreshView)="getAccounts()"
 ></app-account-form>
-<div class="card">
+<div class="card" *ngIf="list">
     <div class="card-body">
     <input
         type="text"
@@ -13,13 +15,14 @@
     />
 </div>
 <p>Cuentas registradas {{totalAccounts}}</p>
-<mat-list>
+<mat-list *ngIf="list">
     <mat-list-item *ngFor="let account of accounts">     
         <mat-icon mat-list-icon>folder</mat-icon>   
         <h3 matLine>{{account.name}}</h3>               
     </mat-list-item>
 </mat-list>
 <app-paginator
+    *ngIf="list"
     [total]="totalAccounts"
     [desde]="desde"
     [itemsPerPage]="10"

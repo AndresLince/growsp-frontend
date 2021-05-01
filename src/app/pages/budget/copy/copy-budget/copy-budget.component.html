@@ -1,0 +1,69 @@
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">   
+  <form class="example-form" [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">    
+    <mat-card class="card-picture">
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <mat-form-field class="example-full-width" appearance="outline" fxFlex="80%">
+          <mat-label>Presupuesto:</mat-label>
+          <input matInput placeholder="Presupuesto" formControlName="name" type="text">
+        </mat-form-field>       
+      </mat-card-title>
+      <mat-card-subtitle>    
+       
+        <span fxFlex="40%">       
+          <button mat-raised-button type="submit" [disabled]="!dynamicForm.valid" color="primary">Crear presupuesto</button>
+        </span>   
+        <span fxFlex="30%">            
+        <button mat-mini-fab color="primary" *ngIf="details.controls.length>1" (click)="addDetail()" >
+          <mat-icon>add</mat-icon>
+        </button>     
+        </span> 
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        <h2><strong>Total:</strong> {{totalValue}}</h2>
+      </mat-card-subtitle>
+    <div *ngFor="let ticket of details.controls; let i = index">
+      <div [formGroup]="ticket">
+        <mat-form-field class="example-full-width" appearance="outline" fxFlex="40%">
+          <mat-label>Descripción:</mat-label>
+          <input matInput placeholder="Descripción" type="text" formControlName="description">
+        </mat-form-field>    
+        <mat-form-field class="example-full-width" appearance="outline" fxFlex="20%">
+          <mat-label>Valor:</mat-label>
+          <input matInput placeholder="Valor" formControlName="value" type="number" (keyup)="calculateTotalValue()">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="20%">
+          <mat-label>Select</mat-label>
+          <mat-select formControlName="type" [compareWith]="compareCategoryObjects" [ngValue]="type" (selectionChange)="calculateTotalValue()">
+            <mat-option value="1">Ingreso</mat-option>
+            <mat-option value="0">Gasto</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <section fxFlex="20%">          
+          <button mat-fab color="primary" *ngIf="details.controls.length>1" (click)="removeDetail(i)" >
+            <mat-icon>delete</mat-icon>
+          </button>      
+        </section>     
+      </div>
+    </div>   
+  </mat-card>
+</form>
+</div>
+
+
+<!--<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()"> 
+ 
+  
+  <button >Agregar detalle</button>
+  <div class="form-group col-3">
+    <label>Nombre presupuesto:</label>
+    <input type="text" formControlName="name" class="form-control"/>                     
+    </div>
+  <div class="card m-3">  
+      <div *ngFor="let ticket of details.controls; let i = index" class="list-group list-group-flush">
+          <div class="list-group-item">              
+              
+          </div>
+      </div>      
+  </div>
+</form>-->

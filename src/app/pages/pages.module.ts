@@ -16,10 +16,16 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatIconModule} from '@angular/material/icon';
 import { AccountsComponent } from './accounts/accounts.component'; 
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CopyBudgetComponent } from './budget/copy/copy-budget/copy-budget.component'; 
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatInputModule} from '@angular/material/input'; 
+import {MatSelectModule} from '@angular/material/select'; 
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatButtonModule} from '@angular/material/button'; 
 
 @NgModule({
-  declarations: [DashboardComponent, PagesComponent, TransactionsComponent, BudgetsComponent, BudgetDetailComponent, BudgetComponent, TransactionCategoriesComponent, AccountsComponent],
+  declarations: [DashboardComponent, PagesComponent, TransactionsComponent, BudgetsComponent, BudgetDetailComponent, BudgetComponent, TransactionCategoriesComponent, AccountsComponent, CopyBudgetComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -30,7 +36,13 @@ import { AccountsComponent } from './accounts/accounts.component';
     ReactiveFormsModule,
     MatListModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    FlexLayoutModule,
+    MatButtonModule
   ],
   exports:[
     DashboardComponent,

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { BudgetService } from './../../services/budget.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -26,7 +27,7 @@ export class EditBudgetFormComponent implements OnInit {
 
   constructor(
     public formBuilder:FormBuilder,
-    public budgetService:BudgetService
+    public budgetService:BudgetService,public router:Router
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +49,10 @@ export class EditBudgetFormComponent implements OnInit {
       
       Swal.fire('Error',errorResponse,'error');
     })
+  }
+
+  goToCopy(){
+    this.router.navigateByUrl('dashboard/budget/copy/'+this.id_budget);
   }
 
 }

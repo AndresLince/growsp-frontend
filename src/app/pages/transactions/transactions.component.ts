@@ -71,7 +71,7 @@ export class TransactionsComponent implements OnInit {
   }
 
   refreshTransactions(event){
-    this.txtTermino.nativeElement.value = '';
+    //this.txtTermino.nativeElement.value = '';
     this.getTransactions(0,'no-filter',false);
   }
 

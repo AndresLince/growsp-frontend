@@ -14,6 +14,8 @@ export class TransactionCategoriesComponent implements OnInit {
   public transactionCategoriesTemp:Account[];
   public transactionCategories:TransactionCategory[];
   public filter:string='no-filter';
+  public create:boolean=false;
+  public list:boolean=true;
 
   constructor( public transactionCategoryService:TransactionCategoryService,public utilsService:UtilsService) { }
 
@@ -28,9 +30,9 @@ export class TransactionCategoriesComponent implements OnInit {
 
           this.transactionCategoriesTemp=resp.transactionCategories;
           this.total=resp.total;
-        }
-        console.log(resp);   
+        }        
         this.transactionCategories=resp.transactionCategories;
+        this.showView('list');
       },err=>{
         this.utilsService.showAlertError(err);
       }
@@ -51,6 +53,23 @@ export class TransactionCategoriesComponent implements OnInit {
     }
     this.desde=0;
     this.getTransactionCategories(this.desde,this.filter,true);
+  }
+
+  showView(view:string){
+    switch (view) {
+      case 'create':
+        this.create=true;
+        this.list=false;
+        break;
+      case 'list':
+        this.create=false;
+        this.list=true;
+        break;
+    
+      default:
+        break;
+    }
+  
   }
 
 }

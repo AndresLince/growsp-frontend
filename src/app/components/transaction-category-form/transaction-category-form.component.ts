@@ -1,3 +1,4 @@
+import { UtilsService } from './../../services/utils.service';
 import { TransactionCategoryService } from './../../services/transaction-category.service';
 import  Swal  from 'sweetalert2';
 import { Validators, FormBuilder } from '@angular/forms';
@@ -29,7 +30,8 @@ export class TransactionCategoryFormComponent implements OnInit {
 
   constructor(
     public formBuilder:FormBuilder,
-    public transactionCategoryService:TransactionCategoryService
+    public transactionCategoryService:TransactionCategoryService,
+    public utilsService:UtilsService
   ) {
 
    }
@@ -59,14 +61,7 @@ export class TransactionCategoryFormComponent implements OnInit {
         );
         this.refreshView.emit(true);
       },err=>{
-        const json=err.error.errors;
-        let errorResponse='';
-        for (let i in json) {
-          
-          errorResponse=json[i].msg;      
-        }
-        
-        Swal.fire('Error',errorResponse,'error');
+        this.utilsService.showAlertError(err);
       });
     }
 
