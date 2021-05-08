@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-expand-sm navbar-expand-md navbar-dark bg-primary">
+  <!--<nav class="navbar navbar-expand-lg navbar-expand-sm navbar-expand-md navbar-dark bg-primary">
   
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
         <button (click)="cerrarSesion()"  class="btn btn-outline-success my-2 my-sm-0" >Cerrar Sesión</button>
     </div>
   </nav>
-  <!--<p>
+<p>
     <mat-toolbar color="primary">
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
@@ -41,3 +41,29 @@
       </button>
     </mat-toolbar>
   </p>-->
+  <mat-toolbar color="primary" fxLayoutGap="15px">
+    <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+        <a routerLink="/">GrowSp</a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">           
+            <li *ngFor="let option of menuOptions">
+              <a routerLink="{{option.route}}">{{option.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">           
+          <li>
+            <button mat-icon-button (click)="cerrarSesion()">
+              <mat-icon>logout</mat-icon>
+            </button>
+          </li>
+      </ul>
+  </div>
+  </mat-toolbar>

@@ -23,7 +23,7 @@
         <h2><strong>Total:</strong> {{totalValue}}</h2>
       </mat-card-subtitle>
     <div *ngFor="let ticket of details.controls; let i = index">
-      <div [formGroup]="ticket">
+      <div [formGroup]="ticket" fxLayoutGap="5px">
         <mat-form-field class="example-full-width" appearance="outline" fxFlex="40%">
           <mat-label>Descripción:</mat-label>
           <input matInput placeholder="Descripción" type="text" formControlName="description">

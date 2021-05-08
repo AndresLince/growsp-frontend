@@ -23,6 +23,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select'; 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button'; 
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [DashboardComponent, PagesComponent, TransactionsComponent, BudgetsComponent, BudgetDetailComponent, BudgetComponent, TransactionCategoriesComponent, AccountsComponent, CopyBudgetComponent],
@@ -42,7 +43,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatSelectModule,
     FlexLayoutModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule
   ],
   exports:[
     DashboardComponent,

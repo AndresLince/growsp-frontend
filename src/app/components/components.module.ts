@@ -16,6 +16,7 @@ import { AccountFormComponent } from './account-form/account-form.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button'; 
 import {MatDividerModule} from '@angular/material/divider'; 
+import {MatCardModule} from '@angular/material/card'; 
 
 @NgModule({
   declarations: [ModalTransactionComponent, TransactionsTableComponent, PaginatorComponent, CreateBudgetFormComponent, EditBudgetFormComponent, CreateBudgetDetailFormComponent, ModalAdjustmentAccountComponent, NetFortuneComponent, TransactionCategoryFormComponent, AccountFormComponent],
@@ -27,7 +28,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule
   ],
   exports:[
     ModalTransactionComponent,

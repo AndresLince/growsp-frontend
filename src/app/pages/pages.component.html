@@ -1,4 +1,4 @@
-<div id="main-wrapper">
+<!--<div id="main-wrapper">
     <app-header></app-header>     
     <div class="page-wrapper mt-2">
       <div class="container-fluid">
@@ -6,7 +6,7 @@
           <mat-spinner class="spinner"></mat-spinner>
         </div>
         <router-outlet></router-outlet>
-        <!--<div class="row">
+        <div class="row">
           <div class="col-12">
               <div class="card">
                   <div class="card-body">
@@ -14,8 +14,8 @@
                   </div>
               </div>
           </div>
-        </div>-->
-      </div>
+        </div>
+      </div>-->
       <!-- ============================================================== -->
       <!-- footer -->
       <!-- ============================================================== -->
@@ -24,7 +24,23 @@
       </footer>-->
       <!-- ============================================================== -->
       <!-- End footer -->
-      <!-- ============================================================== -->
+      <!-- ============================================================== 
     </div>
-  </div>
+  </div>-->
   
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+      <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <!--in here all the content must reside. We will add a navigation header as well-->
+      <main>
+        <app-header  (sidenavToggle)="sidenav.toggle()"></app-header>   
+        <div class="uploader-status spinner-background" *ngIf="utilsService.getLoading()">
+          <mat-spinner class="spinner"></mat-spinner>
+        </div>        
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
