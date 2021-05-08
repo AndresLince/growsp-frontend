@@ -1,17 +1,17 @@
-<div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.15%" fxLayoutAlign="center"> 
-   
-      <mat-list>
-        <mat-list-item *ngFor="let account of accounts">
-          <mat-icon matListIcon color="primary">account_balance</mat-icon>
-          <h3 matLine>{{account.name}}</h3>
-          <p matLine>
-            <span>{{account.total| currency}}</span>        
-          </p>
-          <button mat-mini-fab color="primary" (click)="showAdjustPage(account)">
-            <mat-icon>build</mat-icon>
-          </button>   
-        </mat-list-item>    
-      </mat-list>  
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.15%" fxLayoutAlign="center"> 
+  <mat-list>
+    <mat-list-item *ngFor="let account of accounts">
+      <mat-icon matListIcon color="primary">account_balance</mat-icon>
+      <h3 matLine>{{account.name}}</h3>
+      <p matLine>
+        <span>{{account.total| currency}}</span>        
+      </p>
+      <button mat-mini-fab color="primary" (click)="showAdjustPage(account)">
+        <mat-icon>build</mat-icon>
+      </button>   
+    </mat-list-item>    
+  </mat-list>  
+  <div fxLayout="row" fxLayoutGap="0.15%" fxLayoutAlign="center">
     <div fxLayout="column" fxLayoutGap="0.15%" fxLayoutAlign="center">
     <div class="row animated fadeIn fast" *ngIf="cargando">
       <div class="col-12">
@@ -23,7 +23,8 @@
       </div>
     </div>
     <mat-form-field>
-      <mat-icon matSuffix>search</mat-icon>      
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-label>Descripción:</mat-label>
       <input matInput placeholder="Buscar" type="text" (keyup)="search(txtTermino.value)" #txtTermino>
     </mat-form-field> 
     <h4 class="card-title">Transacciones registradas {{totalTransactions}}</h4>
@@ -37,8 +38,8 @@
         [itemsPerPage]="10"
         (newPage)="changePage($event)"
     ></app-paginator>
+    </div>
   </div>
-  
 </div>     
 <app-modal-transaction
   (refreshTransactionEvent)="refreshTransactions($event)"
