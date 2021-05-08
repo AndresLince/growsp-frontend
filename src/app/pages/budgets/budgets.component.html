@@ -1,50 +1,39 @@
-<p *ngFor="let budget of budgets"></p>
-
-<div class="row">
-    <div class="col-md-2 mt-3" *ngFor="let budget of budgets">
-        <div class="card">
-            <div class="card-header cardHeader">    
-                <div class="row">
-                    <div class="col-md-9 col-sm-1"><strong>{{budget.name}}</strong></div>           
-                    <div class="col-md-3 col-sm-1" class="selector"> 
-                        <fa-icon [icon]="faEdit" (click)="openBudget(budget.id)"></fa-icon>
-                    </div>
-                </div>               
-            </div>
-            <div class="card-body">
-                <p class="card-text"><strong>Total:</strong> {{budget.incomes-budget.expenses}}</p>
-                <table class="table table-sm">
-                    <thead>
-                      <tr>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Valor</th>           
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let budgetDetail of budget.budgetDetails">
-                            <td>{{budgetDetail.description}}</td>
-                            <td>{{budgetDetail.symbol}}{{budgetDetail.netValue}}</td>   
-                            <td class="selector"><fa-icon [icon]="faEdit" (click)="openBudgetDetail(budgetDetail.id)"></fa-icon></td>                         
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mt-3">
-        <div class="card">
-            <div class="card-header cardHeader">    
-                <strong>Crear presupuesto</strong>
-            </div>
-            <div class="card-body">
-               <app-create-budget-form
-                (refreshBudgets)="getBudgets()"
-               ></app-create-budget-form>        
-            </div>
-        </div>
-    </div>
-
-
-   
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.15%" fxLayoutAlign="left"> 
+    <mat-card>
+        <mat-card-title fxLayout="row">
+            <strong>Crear presupuesto</strong>
+        </mat-card-title>        
+        <mat-card-content>
+            <app-create-budget-form
+            (refreshBudgets)="getBudgets()"
+           ></app-create-budget-form>       
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngFor="let budget of budgets" fxLayoutGap="0.20%">
+        <mat-card-title fxLayout="row">
+            <strong fxFlex="90%">{{budget.name}}</strong>
+            <mat-icon class="selector" (click)="openBudget(budget.id)">edit</mat-icon>
+        </mat-card-title>        
+        <mat-card-content>
+            <h4><strong>Total:</strong> {{budget.incomes-budget.expenses}}</h4>
+            <table mat-table [dataSource]="budget.budgetDetails">
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef class="w-200 th-left"> Description </th>
+                    <td mat-cell *matCellDef="let budgetDetail"> {{budgetDetail.description}} </td>
+                </ng-container>
+                <ng-container matColumnDef="netValue">
+                    <th mat-header-cell *matHeaderCellDef class="w-200 th-left"> Valor </th>
+                    <td mat-cell *matCellDef="let budgetDetail"> {{budgetDetail.netValue}} </td>
+                </ng-container>
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let budgetDetail">
+                        <mat-icon class="selector" color="primary" class="selector" (click)="openBudgetDetail(budgetDetail.id)">edit</mat-icon>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
 </div>
-

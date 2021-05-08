@@ -13,6 +13,7 @@ export class BudgetsComponent implements OnInit {
 
   public budgets:any=[];
   faEdit = faEdit;
+  displayedColumns: string[] = ['description','netValue','id'];
 
   constructor(
     public budgetService:BudgetService,

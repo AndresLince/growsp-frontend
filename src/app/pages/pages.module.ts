@@ -24,6 +24,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button'; 
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatTableModule} from '@angular/material/table'; 
 
 @NgModule({
   declarations: [DashboardComponent, PagesComponent, TransactionsComponent, BudgetsComponent, BudgetDetailComponent, BudgetComponent, TransactionCategoriesComponent, AccountsComponent, CopyBudgetComponent],
@@ -44,7 +45,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSelectModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTableModule
   ],
   exports:[
     DashboardComponent,
