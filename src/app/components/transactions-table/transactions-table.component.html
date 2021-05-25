@@ -1,4 +1,4 @@
-<mat-list dense>
+<mat-list dense fxFlex.xs="1 1 400px">
     <mat-list-item *ngFor="let transaction of transactions" [class.has-budget-detail]="transaction.budget_detail_name&&!fromTransactions">                
         <h3 matLine><strong>{{transaction.netValue}} - {{transaction.description}}</strong></h3>
         <div matLine><strong>Cuenta: </strong>{{transaction.account_name}} </div>

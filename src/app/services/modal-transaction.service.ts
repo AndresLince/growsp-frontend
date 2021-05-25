@@ -43,7 +43,7 @@ export class ModalTransactionService {
     ]
     ,
     total:[
-      ''
+      {value: '', disabled:true} 
     ]
   });
   public category_name:string='';

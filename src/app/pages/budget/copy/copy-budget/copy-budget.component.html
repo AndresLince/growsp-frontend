@@ -14,7 +14,7 @@
           <button mat-raised-button type="submit" [disabled]="!dynamicForm.valid" color="primary">Crear presupuesto</button>
         </span>   
         <span fxFlex="30%">            
-        <button mat-mini-fab color="primary" *ngIf="details.controls.length>1" (click)="addDetail()" >
+        <button mat-mini-fab color="primary" (click)="addDetail()" >
           <mat-icon>add</mat-icon>
         </button>     
         </span> 

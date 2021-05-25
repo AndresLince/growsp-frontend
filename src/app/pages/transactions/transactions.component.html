@@ -11,8 +11,8 @@
       </button>   
     </mat-list-item>    
   </mat-list>  
-  <div fxLayout="row" fxLayoutGap="0.15%" fxLayoutAlign="center">
-    <div fxLayout="column" fxLayoutGap="0.15%" fxLayoutAlign="center">
+  <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center" fxFlex.xs="0 0 400px">
+    <div fxLayout="column" fxLayoutGap="1%">
     <div class="row animated fadeIn fast" *ngIf="cargando">
       <div class="col-12">
           <div class="alert alert-info text-center" role="alert">
@@ -22,6 +22,10 @@
           </div>
       </div>
     </div>
+    <div></div>
+    <div></div>
+    <button mat-raised-button color="primary" (click)="abrirModal(1)">Agregar ingreso</button>
+    <button mat-raised-button color="warn" (click)="abrirModal(0)">Agregar gasto</button>
     <mat-form-field>
       <mat-icon matSuffix>search</mat-icon>
       <mat-label>Descripción:</mat-label>

@@ -20,107 +20,84 @@
                     >×</span></button>
                 </div>
                 <div class="modal-body">
-
                     <div class="container-fluid">
-                        <form   
+                        <div fxLayout="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">  
+                            <form class="example-form" 
                             class="form-horizontal form-material" 
                             id="loginform"     
                             autocomplete="off"
                             [formGroup]="modalTransactionService.transactionForm"
-                            (ngSubmit)="enviarDatos()"  
-                        >                            
-                            <div class="row">
-                                <div class="col-md-6">                                    
-                                    <div class="form-group">   
-                                        <label>Cuenta:</label>                         
-                                        <select class="form-control input-border"    
-                                            formControlName="account"          
-                                        >                                    
-                                        <option 
-                                        [selected]="account.name===modalTransactionService.account_name"
-                                        (value)="account.id" *ngFor="let account of modalTransactionService.accounts">{{account.name}}</option>                                    
-                                        </select>                                     
-                                    </div>   
-                                </div>                               
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">                                    
-                                    <div class="form-group">   
-                                        <label>Categoria:</label>                         
-                                        <select class="form-control input-border"    
-                                            formControlName="category"  
-                                        >                                    
-                                        <option (value)="category" *ngFor="let category of modalTransactionService.categories"
-                                        [selected]="category.name===modalTransactionService.category_name">{{category.name}}</option>                                    
-                                        </select>                     
-                                    </div>   
-                                </div>
-                                <div class="col-md-6">                                            
-                                    <div class="form-group">                                                                            
-                                        <input                             
-                                            class="form-control input-border"                             
-                                            type="text"                             
-                                            placeholder="Descripción"                                                        
-                                            formControlName="description"
-                                        />                    
-                                    </div>       
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">    
-                                    <div class="form-group">                                                                           
-                                        <input 
-                                            type="number" 
-                                            class="form-control input-border" 
-                                            placeholder="Valor"
-                                            formControlName="value"
-                                            (keyup)="calcularTotal()"
-                                        />
-                                    </div>                  
-                                </div>
-                                <div class="col-md-6">    
-                                    <div class="form-group">                                                                           
-                                        <input 
-                                            type="number" 
-                                            class="form-control input-border" 
-                                            placeholder="Cantidad"
-                                            formControlName="quantity"
-                                            (keyup)="calcularTotal()"
-                                        />
-                                    </div>                  
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">    
-                                    <div class="form-group">                                                                          
-                                        <input 
-                                            type="date" 
-                                            class="form-control input-border" 
-                                            placeholder="Fecha"
-                                            formControlName="date"
-                                        />
-                                    </div>                  
-                                </div>
-                                <div class="col-md-6">    
-                                    <div class="form-group">                                                                          
-                                        <input 
-                                            type="text" 
-                                            class="form-control input-border" 
-                                            placeholder="Total"
-                                            formControlName="total"
-                                            [(ngModel)]="total"   
-                                            disabled
-                                        />
-                                    </div>                  
-                                </div>
-                            </div>
-
+                            (ngSubmit)="enviarDatos()">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Cuenta:</mat-label>
+                                <mat-select formControlName="account" >
+                                    <mat-option
+                                        *ngFor="let account of modalTransactionService.accounts"
+                                        [value]="account.name">
+                                        {{account.name}}
+                                    </mat-option>                                 
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Categoria:</mat-label>
+                                <mat-select formControlName="category" >
+                                    <mat-option
+                                        *ngFor="let category of modalTransactionService.categories"
+                                        [value]="category.name">
+                                        {{category.name}}
+                                    </mat-option>                                 
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Descripción:</mat-label>
+                                <input matInput 
+                                    placeholder="Descripción" 
+                                    formControlName="description" 
+                                    type="text"
+                                >
+                              </mat-form-field>
+                              <mat-form-field appearance="outline">
+                                <mat-label>Valor:</mat-label>
+                                <input matInput 
+                                    placeholder="Valor" 
+                                    formControlName="value"                                     
+                                    type="number"
+                                    (keyup)="calcularTotal()"
+                                    (change)="calcularTotal()"
+                                >
+                              </mat-form-field>
+                              <mat-form-field appearance="outline">
+                                <mat-label>Cantidad:</mat-label>
+                                <input matInput 
+                                    placeholder="Cantidad" 
+                                    formControlName="quantity"                                     
+                                    type="number"
+                                    (keyup)="calcularTotal()"
+                                    (change)="calcularTotal()"
+                                >
+                              </mat-form-field>     
+                              <mat-form-field appearance="outline">
+                                <mat-label>Fecha:</mat-label>
+                                <input matInput 
+                                    placeholder="Fecha" 
+                                    formControlName="date"                                     
+                                    type="date"                                    
+                                >
+                              </mat-form-field>    
+                              <mat-form-field appearance="outline">
+                                <mat-label>Total:</mat-label>
+                                <input matInput 
+                                    placeholder="Total" 
+                                    formControlName="total"                                     
+                                    type="text"                                       
+                                    [(ngModel)]="total"                                  
+                                >
+                              </mat-form-field>                                
                             <button type="submit" class="btn btn-primary btn-block button">Guardar</button>
-                        </form>                        
+                        </form>  
+                        </div> 
+                                      
                     </div>                    
-                </div>
-                <div class="modal-footer">
-                   
                 </div>
             </div>
         </div>
