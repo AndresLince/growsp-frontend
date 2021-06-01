@@ -1,60 +1,38 @@
-<div class="row">
-    <div class="col-lg-9 col-sm-12">
-        <div class="card">
-            <div class="card-body">
-                <app-edit-budget-form
-                    [budgetName]="budgetName"
-                    [AffectBudget]="AffectBudget"
-                    [id_budget]="id"
-                ></app-edit-budget-form>
-                <h4 class="card-title" *ngIf="budgetDetails[0].id">Detalles registrados</h4>
-                <h4 class="card-title" *ngIf="!budgetDetails[0].id">No hay Detalles registrados</h4>
-                    <div class="table-responsive" *ngIf="budgetDetails[0].id" >
-                        <table class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th class="w80">Neto</th>
-                                    <th class="w80">Valor</th>
-                                    <th class="w80">Transacciones</th>
-                                    <th class="w150">Valor inicial</th>
-                                    <th class="w80">%</th>
-                                    <th class="w100">Tipo</th>
-                                    <th>Descripcion</th>
-                                    <th class="w100">Acciones</th>
-                                </tr>
-                            </thead>
-                        <tbody>
-                            <tr *ngFor="let budgetDetail of budgetDetails">
-                                <td>{{budgetDetail.netValue}}</td>
-                                <td>{{budgetDetail.value}}</td>
-                                <td>{{budgetDetail.totalTransactions}}</td>
-                                <td>{{budgetDetail.initial_value}}</td>
-                                <td>{{budgetDetail.percentage}}</td>
-                                <td>{{budgetDetail.type}}</td>
-                                <td>{{budgetDetail.description}}</td>
-                                <td class="selector"><fa-icon [icon]="faEdit" (click)="openBudgetDetail(budgetDetail.id)"></fa-icon></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-12">
-        <div class="card">
-            <div class="card-header cardHeader">
-                <h3>Crear detalle de presupuesto</h3>
-            </div>
-
-            <div class="card-body">
-                <app-create-budget-detail-form
-                    [id_budget]="id"
-                    [form_type]="1"
-                    (refreshView)="getBudgetDetails()"
-                >
-
-                </app-create-budget-detail-form>
-            </div>
-        </div>
-    </div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">   
+    <app-edit-budget-form
+        [budgetName]="budgetName"
+        [AffectBudget]="AffectBudget"
+        [id_budget]="id"
+    ></app-edit-budget-form>
+    <mat-list dense>
+        <mat-list-item *ngFor="let budgetDetail of budgetDetails">
+            <h3 matLine><strong>{{budgetDetail.description}}</strong></h3>
+            <div matLine><strong>Valor neto: </strong>{{budgetDetail.netValue}} </div>
+            <h4 matLine><strong>Valor: </strong> {{budgetDetail.value}} </h4>    
+            <h4 matLine><strong>Transacciones: </strong>{{budgetDetail.totalTransactions}}</h4>  
+            <h4 matLine><strong>Valor Inicial: </strong>{{budgetDetail.initial_value}}<strong> Porcentaje: </strong>{{budgetDetail.percentage}}</h4>   
+            <h4 matLine><strong>Tipo: </strong>{{budgetDetail.type}}</h4>
+            <button 
+                mat-icon-button 
+                class="selector"  
+                style="float:right"
+                 title="Agregar transacción"          
+                (click)="openBudgetDetail(budgetDetail.id)">        
+                <mat-icon color="primary">edit</mat-icon>                
+            </button>      
+        </mat-list-item> 
+    </mat-list>
+    <mat-card>
+        <mat-card-title>
+            <strong>Crear detalle de presupuesto</strong>
+        </mat-card-title>
+        <mat-card-content>
+            <app-create-budget-detail-form
+                [id_budget]="id"
+                [form_type]="1"
+                (refreshView)="getBudgetDetails()"
+            >
+            </app-create-budget-detail-form>
+        </mat-card-content>
+    </mat-card>
 </div>

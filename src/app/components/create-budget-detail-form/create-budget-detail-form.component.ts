@@ -24,11 +24,11 @@ export class CreateBudgetDetailFormComponent implements OnInit {
       [Validators.required]
     ],   
     type:[
-      '1',
+      '0',
       [Validators.required]
     ],
     quantity:[
-      '',
+      '1',
       [Validators.required]
     ],  
     value:[
@@ -101,6 +101,10 @@ export class CreateBudgetDetailFormComponent implements OnInit {
     }
 
 
+  }
+
+  compareCategoryObjects(object1: any, object2: any) {    
+    return object1 == object2;
   }
 
 }

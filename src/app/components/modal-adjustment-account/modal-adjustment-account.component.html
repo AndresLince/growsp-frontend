@@ -19,79 +19,66 @@
                     >×</span></button>
                 </div>
                 <div class="modal-body">
-
-                    <div class="container-fluid">
-                        <form   
-                            class="form-horizontal form-material" 
-                            id="loginform"     
-                            autocomplete="off"
-                            [formGroup]="modalAdjustmentAccountService.adjustmentForm"
-                            (ngSubmit)="enviarDatos()"  
-                        >      
-                        <div class="row">                    
-                            <div class="col-md-6">
-                            <div class="form-group">
-        
-                            <label>Dinero Total</label>
-                            <input 
-                                type="number" 
-                                class="form-control input-border" 
-                                name="total" 
-                                formControlName="total"                                                                  
-                                disabled                                       
-                            />
-                            </div>
-                            </div>
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Valor Real</label>
-                                <input 
+                    <div fxLayout="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">  
+                    <form 
+                        class="form-horizontal form-material" 
+                        autocomplete="off"
+                        [formGroup]="modalAdjustmentAccountService.adjustmentForm"
+                        (ngSubmit)="enviarDatos()">
+                        <div fxLayout="row">
+                            <mat-form-field appearance="outline" fxFlex="100%">
+                                <mat-label>Dinero Total:</mat-label>
+                                <input matInput 
+                                    type="number" 
+                                    name="total" 
+                                    formControlName="total"                                                                  
+                                >
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field appearance="outline" fxFlex="100%">
+                                <mat-label>Valor Real:</mat-label>
+                                <input matInput 
                                     type="number"
-                                    min="0" 
-                                    class="form-control input-border" 
+                                    min="0"
                                     name="value"
                                     placeholder="Valor" 
                                     formControlName="value"
                                     (keyup)="updateAjustment()"
-                                    (change)="updateAjustment()"
-                                />
-                            </div>
-                            
+                                    (change)="updateAjustment()"                                                               
+                                >
+                            </mat-form-field>
                         </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Valor ajuste</label>
-                            <input 
-                                type="number" 
-                                class="form-control input-border" 
-                                name="adjustment"  
-                                formControlName="adjustment"                                                      
-                                disabled                                                 
-                            />
+                        <div fxLayout="row">
+                            <mat-form-field appearance="outline" fxFlex="100%">
+                                <mat-label>Valor Ajuste:</mat-label>
+                                <input matInput 
+                                    type="number"
+                                    name="adjustment"  
+                                    formControlName="adjustment"                                  
+                                >
+                            </mat-form-field>
                         </div>
-                        
-                    </div>
+                        <div fxLayout="row">    
+                            <mat-form-field appearance="outline" fxFlex="100%">
+                                <mat-label>Fecha:</mat-label>
+                                <input matInput 
+                                    placeholder="Fecha" 
+                                    formControlName="date"                                     
+                                    type="date"                                    
+                                >
+                            </mat-form-field>   
+                        </div> 
+                        <div fxLayout="row">
+                            <button 
+                                fxFlex="100%"
+                                mat-raised-button type="submit" 
+                                [disabled]="!modalAdjustmentAccountService.adjustmentForm.valid" 
+                                color="primary">Guardar
+                            </button>
                         </div>
-        
-                       
-        
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                <label>Fecha</label>
-                                <input 
-                                    type="date" 
-                                    class="form-control input-border" 
-                                    name="date"
-                                    formControlName="date"               
-                                    placeholder="date"                                                                                                           
-                                />
-                                </div>
-                            </div>
-                        </div>            
-                            <button type="submit" class="btn btn-primary btn-block button">Guardar</button>
-                        </form>                        
-                    </div>                    
+                    </form>
+                    </div>                   
                 </div>
                 <div class="modal-footer">
                    

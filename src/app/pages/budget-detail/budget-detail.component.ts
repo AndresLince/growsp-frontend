@@ -5,6 +5,7 @@ import { Transaction } from './../../models/transaction.model';
 import { BudgetDetailService } from './../../services/budget-detail.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { UtilsService } from 'src/app/services/utils.service';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class BudgetDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,  
     private budgetDetailService:BudgetDetailService,
-    private transactionService:TransactionService
+    private transactionService:TransactionService,
+    private utilsService:UtilsService
   ) { }
 
   ngOnInit(): void {
@@ -74,11 +76,7 @@ export class BudgetDetailComponent implements OnInit {
 
     if(termino.length===0){
       console.log("entra");
-      
-      //this.totalTransactions=this.totalbudgetDetailTransactions;
-      //this.budgetDetailTransactions=this.budgetDetailTransactionsTemp;
-      this.filter='no-filter';
-      //return;
+      this.filter='no-filter';      
     }
     this.desde=0;
     
@@ -96,6 +94,8 @@ export class BudgetDetailComponent implements OnInit {
         this.transactionsTemp=transactions;
         this.totalTransactionsTemp=total;
       }        
+    },error=>{
+      this.utilsService.changeLoading(false);
     });
   }
 

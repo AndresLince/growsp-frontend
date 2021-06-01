@@ -129,6 +129,11 @@ export class ModalTransactionService {
     //Si se abre para editar una transaccion
     this.modalTitle='Crear Transacción';
     this.transactionForm.controls['date'].setValue('');
+    this.transactionForm.controls['description'].setValue('');
+    this.transactionForm.controls['value'].setValue('');
+    this.transactionForm.controls['quantity'].setValue(1);
+    this.transactionForm.controls['total'].setValue(0);
+    this.transactionForm.controls['type'].setValue('');
     this.modalType=type;
     this.transactionForm.controls['type'].setValue(type);
     this.transactionCategoryService.getTransactionCategories(0,'no-filter',1,type).subscribe(

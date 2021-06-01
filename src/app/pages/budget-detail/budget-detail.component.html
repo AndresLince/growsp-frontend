@@ -1,79 +1,77 @@
-<div class="row">
-    <div class="col-md-2 mt-3">
-        <div class="card">
-            <div class="card-header cardHeader">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">   
+    <div fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%">  
+        <mat-card>
+            <mat-card-title>
                 <strong>{{budgetDetail.description}}</strong>
-            </div>
-            <div class="card-body">
+            </mat-card-title>
+            <mat-card-content>
                 <p><strong>Presupuesto:</strong> $ {{budgetDetail.value}}</p>
                 <p><strong>Transacciones:</strong> $ {{budgetDetail.totalTransactions}}</p>
                 <hr>
                 <p class="card-text"><strong>Total:</strong> $ {{budgetDetail.value-budgetDetail.totalTransactions}}</p>
-            </div>
-        </div>
-        <div class="card">
-          <div class="card-header cardHeader">
-              <h3>Editar</h3>
-          </div>
-
-          <div class="card-body">
-              <app-create-budget-detail-form
-                [form_type]="0"
-                [budgetDetail]="budgetDetail"
-                (refreshView)="getBudgetDetail(false)"
-              >
-
-              </app-create-budget-detail-form>
-          </div>
-      </div>
-    </div>
-    <div class="col-md-5 mt-3">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Asociar transacciones:</h4>
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Buscar"
-                    (keyup)="searchTransaction(txtTerminoBusquedaTransaccion.value)"
-                    #txtTerminoBusquedaTransaccion
-                />
-                <br>
+            </mat-card-content>
+        </mat-card>
+         <mat-card>
+            <mat-card-title>
+                <strong>Editar</strong>
+            </mat-card-title>
+            <mat-card-content>
+                <app-create-budget-detail-form
+                    [form_type]="0"
+                    [budgetDetail]="budgetDetail"
+                    (refreshView)="getBudgetDetail(false)"
+                >
+                </app-create-budget-detail-form>
+            </mat-card-content>
+        </mat-card>
+    </div> 
+    <div fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%">  
+        <mat-card>
+            <mat-card-title>
+                <strong>Asociar transacciones</strong>
+            </mat-card-title>
+            <mat-card-content>
+                <mat-form-field>
+                    <mat-icon matSuffix>search</mat-icon>
+                    <mat-label>Buscar:</mat-label>
+                    <input matInput placeholder="Buscar" type="text" (keyup)="searchTransaction(txtTerminoBusquedaTransaccion.value)" #txtTerminoBusquedaTransaccion>
+                </mat-form-field>
                 <app-transactions-table
                     [id]="id"
                     [transactions]="transactions"
                     (refreshTransactions)="refreshTransactions($event)"
                 ></app-transactions-table>
-            </div>
-        </div>
-
+            </mat-card-content>
+        </mat-card>
     </div>
-    <div class="col-md-5 mt-3">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Transacciones asociadas:{{this.totalbudgetDetailTransactions}}</h4>
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Buscar"
-                    (keyup)="search(txtTermino.value)"
-                    #txtTermino
-                />
-                <br>
-
+    <div fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%">  
+        <mat-card>
+            <mat-card-title>
+                <strong>Transacciones asociadas ({{this.totalbudgetDetailTransactions}})</strong>
+            </mat-card-title>
+            <mat-card-content>
+                <mat-form-field>
+                    <mat-icon matSuffix>search</mat-icon>
+                    <mat-label>Buscar:</mat-label>
+                    <input matInput 
+                        placeholder="Buscar" 
+                        type="text" 
+                        (keyup)="search(txtTermino.value)" 
+                        #txtTermino
+                    >
+                </mat-form-field>
                 <app-transactions-table
                     [transactions]="budgetDetailTransactions"
                     [id]="id"
                 ></app-transactions-table>
-
                 <app-paginator
                     [total]="totalbudgetDetailTransactions"
                     [desde]="desde"
                     [itemsPerPage]="5"
                     (newPage)="changePageBudgetDetailTransactions($event)"
                 ></app-paginator>
-            </div>
-        </div>
+            </mat-card-content>
+        </mat-card>
     </div>
     <app-modal-transaction
     (refreshTransactionEvent)="addTransaction($event)"

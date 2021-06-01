@@ -4,16 +4,25 @@
     autocomplete="off"
     [formGroup]="budgetForm"
     (ngSubmit)="sendData()"           
->                        
-    <div class="form-group">
-        <label htmlFor="name">Nombre del presupuesto:</label>
-        <input 
+>              
+    <div fxLayout="row">  
+        <mat-form-field appearance="outline"  fxFlex="100%">
+            <mat-label>Nombre del presupuesto:</mat-label>
+            <input matInput 
             type="text" 
-            class="form-control input-border" 
             id="name"   
             formControlName="name"         
-            [(ngModel)]="name"      
-        />                    
-    </div>                         
-    <button type="submit" class="btn btn-primary btn-block mt-2 button">Crear</button>
+            [(ngModel)]="name"                                                                
+        >
+        </mat-form-field>
+    </div>    
+    <div fxLayout="row"> 
+        <button 
+            fxFlex="100%"
+            mat-raised-button 
+            type="submit"
+            [disabled]="!budgetForm.valid" 
+            color="primary">Crear
+        </button>      
+    </div>               
 </form>       

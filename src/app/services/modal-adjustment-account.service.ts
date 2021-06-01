@@ -11,12 +11,10 @@ export class ModalAdjustmentAccountService {
 
   public adjustmentForm=this.formBuilder.group({ 
     total:[
-      '',
-      [Validators.required]
+      {value: 0, disabled:true} 
     ],   
     adjustment:[
-      '0',
-      [Validators.required] 
+      {value: '', disabled:true} 
     ],
     value:[
       '0',
@@ -65,12 +63,12 @@ export class ModalAdjustmentAccountService {
 
   updateAjustment(){
   
-    if(this.adjustmentForm.value.value<0){
+    if(this.adjustmentForm.getRawValue().value<0){
       Swal.fire('Error','No puedes tener dinero negativo. Creeme','error');
       this.adjustmentForm.controls['value'].setValue(0);
       return;
     }
-    const adjustment=this.adjustmentForm.value.value-this.adjustmentForm.value.total;
+    const adjustment=this.adjustmentForm.getRawValue().value-this.adjustmentForm.getRawValue().total;
     this.adjustmentForm.controls['adjustment'].setValue(adjustment);
   }
 

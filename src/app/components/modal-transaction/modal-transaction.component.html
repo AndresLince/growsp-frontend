@@ -28,35 +28,42 @@
                             autocomplete="off"
                             [formGroup]="modalTransactionService.transactionForm"
                             (ngSubmit)="enviarDatos()">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Cuenta:</mat-label>
-                                <mat-select formControlName="account" >
-                                    <mat-option
-                                        *ngFor="let account of modalTransactionService.accounts"
-                                        [value]="account.name">
-                                        {{account.name}}
-                                    </mat-option>                                 
-                                </mat-select>
-                            </mat-form-field>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Categoria:</mat-label>
-                                <mat-select formControlName="category" >
-                                    <mat-option
-                                        *ngFor="let category of modalTransactionService.categories"
-                                        [value]="category.name">
-                                        {{category.name}}
-                                    </mat-option>                                 
-                                </mat-select>
-                            </mat-form-field>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Descripción:</mat-label>
-                                <input matInput 
-                                    placeholder="Descripción" 
-                                    formControlName="description" 
-                                    type="text"
-                                >
-                              </mat-form-field>
-                              <mat-form-field appearance="outline">
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100%">
+                                    <mat-label>Cuenta:</mat-label>
+                                    <mat-select formControlName="account" >
+                                        <mat-option
+                                            *ngFor="let account of modalTransactionService.accounts"
+                                            [value]="account.name">
+                                            {{account.name}}
+                                        </mat-option>                                 
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100%">
+                                    <mat-label>Categoria:</mat-label>
+                                    <mat-select formControlName="category" >
+                                        <mat-option
+                                            *ngFor="let category of modalTransactionService.categories"
+                                            [value]="category.name">
+                                            {{category.name}}
+                                        </mat-option>                                 
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100%">
+                                    <mat-label>Descripción:</mat-label>
+                                    <input matInput 
+                                        placeholder="Descripción" 
+                                        formControlName="description" 
+                                        type="text"
+                                    >
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100%">
                                 <mat-label>Valor:</mat-label>
                                 <input matInput 
                                     placeholder="Valor" 
@@ -65,35 +72,49 @@
                                     (keyup)="calcularTotal()"
                                     (change)="calcularTotal()"
                                 >
-                              </mat-form-field>
-                              <mat-form-field appearance="outline">
-                                <mat-label>Cantidad:</mat-label>
-                                <input matInput 
-                                    placeholder="Cantidad" 
-                                    formControlName="quantity"                                     
-                                    type="number"
-                                    (keyup)="calcularTotal()"
-                                    (change)="calcularTotal()"
-                                >
-                              </mat-form-field>     
-                              <mat-form-field appearance="outline">
-                                <mat-label>Fecha:</mat-label>
-                                <input matInput 
-                                    placeholder="Fecha" 
-                                    formControlName="date"                                     
-                                    type="date"                                    
-                                >
-                              </mat-form-field>    
-                              <mat-form-field appearance="outline">
-                                <mat-label>Total:</mat-label>
-                                <input matInput 
-                                    placeholder="Total" 
-                                    formControlName="total"                                     
-                                    type="text"                                       
-                                    [(ngModel)]="total"                                  
-                                >
-                              </mat-form-field>                                
-                            <button type="submit" class="btn btn-primary btn-block button">Guardar</button>
+                                </mat-form-field>
+                            </div>  
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100%">
+                                    <mat-label>Cantidad:</mat-label>
+                                    <input matInput 
+                                        placeholder="Cantidad" 
+                                        formControlName="quantity"                                     
+                                        type="number"
+                                        (keyup)="calcularTotal()"
+                                        (change)="calcularTotal()"
+                                    >
+                                </mat-form-field>  
+                            </div>
+                            <div fxLayout="row">    
+                                <mat-form-field appearance="outline" fxFlex="100%">
+                                    <mat-label>Fecha:</mat-label>
+                                    <input matInput 
+                                        placeholder="Fecha" 
+                                        formControlName="date"                                     
+                                        type="date"                                    
+                                    >
+                                </mat-form-field>   
+                            </div> 
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100%">
+                                    <mat-label>Total:</mat-label>
+                                    <input matInput 
+                                        placeholder="Total" 
+                                        formControlName="total"                                     
+                                        type="text"                                       
+                                        [(ngModel)]="total"                                  
+                                    >
+                                  </mat-form-field>            
+                            </div>
+                            <div fxLayout="row">
+                                <button 
+                                    fxFlex="100%"
+                                    mat-raised-button type="submit" 
+                                    [disabled]="!modalTransactionService.transactionForm.valid" 
+                                    color="primary">Guardar
+                                </button>
+                            </div>
                         </form>  
                         </div> 
                                       

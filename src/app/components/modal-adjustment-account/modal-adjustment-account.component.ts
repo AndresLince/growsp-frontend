@@ -25,7 +25,7 @@ export class ModalAdjustmentAccountComponent implements OnInit {
 
   enviarDatos(){
     
-    this.accountService.createAdjustment(this.modalAdjustmentAccountService.adjustmentForm.value).subscribe(resp=>{
+    this.accountService.createAdjustment(this.modalAdjustmentAccountService.adjustmentForm.getRawValue()).subscribe(resp=>{
       this.refreshTransactionEvent.emit(1);
       Swal.fire(
         'Buen trabajo!',

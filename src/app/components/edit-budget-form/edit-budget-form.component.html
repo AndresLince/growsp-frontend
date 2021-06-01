@@ -1,31 +1,39 @@
+<br>
 <form 
     class="form-inline"
     [formGroup]="budgetForm"
     (ngSubmit)="sendData()"    
 >            
-    <div class="form-group mb-2 col-6"><div class="form-group">
-        <label for="name" class="sr-only">Nombre: </label>
-        <input 
-            type="text" 
-            class="form-control col-sm-10 input-border"           
-            id="name" 
-            placeholder="Nombre"
-            formControlName="name" 
-            [(ngModel)]="budgetName"       
-        >
-    </div>
-        <label>Afecta Inventario:</label>
-            <div class="form-check form-check-inline ml-2">
-           
-            <input type="radio" class="form-check-input"  formControlName="AffectBudget" name="AffectBudget" [(ngModel)]="AffectBudget" value="1">  
-            <label class="form-check-label" htmlFor="inlineRadio1">Sí</label>
-            </div>
-            <div class="form-check form-check-inline">
-                         
-                <input type="radio" class="form-check-input"  formControlName="AffectBudget" name="AffectBudget" [(ngModel)]="AffectBudget" value="0">  
-                <label class="form-check-label" htmlFor="inlineRadio2">No</label>
-            </div>  
-    </div>
-    <button type="submit"class="btn btn-primary mb-2 button">Editar</button>
-    <button (click)="goToCopy()" class="btn btn-primary mb-2 button">Copiar</button>
+    <mat-form-field appearance="outline"  fxFlex="100%">
+        <mat-label>Nombre:</mat-label>
+        <input matInput 
+        id="name" 
+        placeholder="Nombre"
+        formControlName="name" 
+        [(ngModel)]="budgetName"                                                                 
+    >
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="100%">
+        <mat-label>Afecta Inventario:</mat-label>
+        <mat-select 
+            formControlName="AffectBudget" 
+            [compareWith]="compareObjects" 
+            [(ngModel)]="AffectBudget"
+            >
+            <mat-option value="0">No</mat-option>
+            <mat-option value="1">Sí</mat-option>
+        </mat-select>
+    </mat-form-field>    
+    <button 
+        fxFlex="100%"
+        mat-raised-button type="submit" 
+        [disabled]="!budgetForm.valid" 
+        color="primary">Editar
+    </button>   
+    <button 
+        fxFlex="100%"
+        mat-raised-button 
+        (click)="goToCopy()"         
+        color="primary">Copiar
+    </button>             
 </form>

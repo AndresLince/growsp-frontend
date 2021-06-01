@@ -1,55 +1,64 @@
 <form
     [formGroup]="budgetDetailForm"
     (ngSubmit)="sendData()"  >
-    <div class="form-group">
-        <label htmlFor="name">Nombre del detalle:</label>
-        <input type="text" class="form-control input-border" id="name" aria-describedby="emailHelp"  formControlName="name"
-        />
+    <div fxLayout="row">  
+        <mat-form-field appearance="outline"  fxFlex="100%">
+            <mat-label>Nombre del detalle:</mat-label>
+            <input matInput 
+            type="text" id="name" formControlName="name" 
+            placeholder="nombre del detalle"                                                                 
+        >
+        </mat-form-field>
     </div>
-        <label htmlFor="value">Valor:</label>
-        <input
+    <div fxLayout="row">
+        <mat-form-field appearance="outline" fxFlex="100%">
+            <mat-label>Valor:</mat-label>
+            <input matInput 
             type="text"
-            class="form-control input-border"
             id="value"
-            aria-describedby="emailHelp"
+            placeholder="valor"
             formControlName="value"
-        />
-        <div class="form-group" *ngIf="form_type=='1'">
-            <label>Cantidad</label>
-            <input
-                type="number"
-                class="form-control input-border"
-                name="quantity"
-                placeholder="cantidad"
-                formControlName="quantity"
-            />
-        </div>
-
-    <div class="form-group" *ngIf="form_type=='1'">
-        <label>Tipo:</label>
-        <div class="form-check form-check-inline ml-2">
-            <input
-                class="form-check-input"
-                type="radio"
-                name="type"
-                value="1"
-                formControlName="type"
-                [(ngModel)]="type"
-            >
-            <label class="form-check-label" for="inlineRadio1">Ingreso</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input
-                class="form-check-input"
-                type="radio"
-                name="type"
-                value="0"
-                formControlName="type"
-                [(ngModel)]="type"
-            >
-            <label class="form-check-label" for="inlineRadio2">Gasto</label>
-        </div>
+        >
+        </mat-form-field>
     </div>
-    <button type="submit" *ngIf="form_type=='1'" class="btn btn-primary btn-block button">Crear</button>
-    <button type="submit" *ngIf="form_type=='0'" class="btn btn-primary btn-block button mt-4">Editar</button>
+    <div fxLayout="row" *ngIf="form_type=='1'">
+        <mat-form-field appearance="outline" fxFlex="100%">
+            <mat-label>Cantidad:</mat-label>
+            <input matInput 
+            type="number"            
+            name="quantity"
+            placeholder="cantidad"
+            formControlName="quantity"
+        >
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" *ngIf="form_type=='1'">
+        <mat-form-field appearance="outline" fxFlex="100%">
+            <mat-label>Select</mat-label>
+            <mat-select 
+                formControlName="type" 
+                [compareWith]="compareCategoryObjects" 
+                [ngValue]="type" 
+                >
+              <mat-option value="0">Gasto</mat-option>
+              <mat-option value="1">Ingreso</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div fxLayout="row">
+        <button 
+            *ngIf="form_type=='1'"
+            fxFlex="100%"
+            mat-raised-button type="submit" 
+            [disabled]="!budgetDetailForm.valid" 
+            color="primary">Crear
+        </button>
+        <button 
+        *ngIf="form_type=='0'"
+        fxFlex="100%"
+        mat-raised-button type="submit" 
+        [disabled]="!budgetDetailForm.valid" 
+        color="primary">Editar
+    </button>      
+    </div>   
 </form>
